@@ -101,6 +101,10 @@ export const FieldsButton = injector(
         style={{
           maxHeight: 280,
           overflow: "auto",
+          backgroundColor: "#ffffff",
+          border: "1px solid #e5e7eb",
+          borderRadius: "8px",
+          boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06)",
         }}
         openUpwardForShortViewport={openUpwardForShortViewport}
       >

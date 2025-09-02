@@ -115,9 +115,121 @@ export const ProjectsPage = () => {
 
   return (
     <Block name="projects-page">
+      {/* Header Section without Dashboard Badge */}
+      <div style={{
+        textAlign: "center",
+        padding: "0",
+        margin: "0",
+        background: "transparent",
+        backgroundColor: "transparent",
+        borderRadius: "0",
+        boxShadow: "none",
+        border: "none",
+      }}>
+        <h1 style={{
+          fontSize: "48px",
+          fontWeight: "700",
+          margin: "0 0 16px",
+          background: "linear-gradient(135deg, #2d3748, #4a5568)",
+          WebkitBackgroundClip: "text",
+          WebkitTextFillColor: "transparent",
+          backgroundClip: "text",
+        }}>
+          Manage Your Projects
+        </h1>
+        <p style={{
+          fontSize: "20px",
+          color: "#4a5568",
+          margin: "0 0 32px",
+          maxWidth: "600px",
+          marginLeft: "auto",
+          marginRight: "auto",
+          lineHeight: "1.6",
+        }}>
+          Organize, track, and collaborate on your labeling projects with powerful tools and insights
+        </p>
+        <div style={{
+          display: "flex",
+          gap: "16px",
+          justifyContent: "center",
+          flexWrap: "wrap",
+        }}>
+          <Button 
+            onClick={openModal} 
+            look="primary" 
+            size="large"
+            style={{
+              background: "linear-gradient(135deg, #667eea, #764ba2)",
+              border: "none",
+              padding: "16px 32px",
+              borderRadius: "12px",
+              fontSize: "16px",
+              fontWeight: "600",
+              boxShadow: "0 8px 25px rgba(102, 126, 234, 0.3)",
+              transition: "all 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.boxShadow = "0 12px 35px rgba(102, 126, 234, 0.4)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow = "0 8px 25px rgba(102, 126, 234, 0.3)";
+            }}
+          >
+            ✨ Create New Project
+          </Button>
+          <Button 
+            look="secondary" 
+            size="large"
+            style={{
+              background: "rgba(255, 255, 255, 0.9)",
+              border: "2px solid rgba(102, 126, 234, 0.2)",
+              color: "#4a5568",
+              padding: "16px 32px",
+              borderRadius: "12px",
+              fontSize: "16px",
+              fontWeight: "600",
+              transition: "all 0.3s ease",
+            }}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = "translateY(-2px)";
+              e.currentTarget.style.boxShadow = "0 12px 35px rgba(102, 126, 234, 0.4)";
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = "translateY(0)";
+              e.currentTarget.style.boxShadow = "0 8px 25px rgba(102, 126, 234, 0.3)";
+            }}
+          >
+            📊 View Analytics
+          </Button>
+        </div>
+      </div>
+
       <Oneof value={networkState}>
         <Elem name="loading" case="loading">
-          <Spinner size={64} />
+          <div style={{
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            justifyContent: "center",
+            padding: "80px 20px",
+            background: "rgba(255, 255, 255, 0.95)",
+            backdropFilter: "blur(10px)",
+            borderRadius: "20px",
+            margin: "0 20px",
+            boxShadow: "0 20px 40px rgba(0, 0, 0, 0.1)",
+          }}>
+            <Spinner size={64} />
+            <p style={{
+              marginTop: "24px",
+              fontSize: "18px",
+              color: "#4a5568",
+              fontWeight: "500",
+            }}>
+              Loading your projects...
+            </p>
+          </div>
         </Elem>
         <Elem name="content" case="loaded">
           {projectsList.length ? (

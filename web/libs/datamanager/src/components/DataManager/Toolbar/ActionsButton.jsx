@@ -115,9 +115,8 @@ export const ActionsButton = injector(
           key={action.id}
           danger={isDeleteAction}
           onClick={onClick}
-          className={`actionButton${action.isSeparator ? "_isSeparator" : action.isTitle ? "_isTitle" : ""} ${
-            action.disabled ? "actionButton_disabled" : ""
-          }`}
+          className={`actionButton${action.isSeparator ? "_isSeparator" : action.isTitle ? "_isTitle" : ""} ${action.disabled ? "actionButton_disabled" : ""
+            }`}
           icon={isDeleteAction && <IconTrash />}
           title={action.disabled ? action.disabledReason : null}
         >
@@ -135,10 +134,18 @@ export const ActionsButton = injector(
         openUpwardForShortViewport={false}
         disabled={!hasSelected}
       >
-        <Button size={size} disabled={!hasSelected} {...rest}>
-          {selectedCount > 0 ? `${selectedCount} ${recordTypeLabel}${selectedCount > 1 ? "s" : ""}` : "Actions"}
+        <Button
+          size={size}
+          disabled={!hasSelected}
+          className="actionButton actionButton--primary"
+          {...rest}
+        >
+          {selectedCount > 0
+            ? `${selectedCount} ${recordTypeLabel}${selectedCount > 1 ? "s" : ""}`
+            : "Actions"}
           <IconChevronDown style={{ marginLeft: 4, marginRight: -7 }} />
         </Button>
+
       </Dropdown.Trigger>
     );
   }),

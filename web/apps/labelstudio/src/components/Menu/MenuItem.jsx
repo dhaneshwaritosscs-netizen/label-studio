@@ -36,7 +36,7 @@ export const MenuItem = ({
 
   const linkContent = (
     <>
-      {icon && <span className={rootClass.elem("item-icon")}>{icon}</span>}
+      {icon && <span className={`${rootClass.elem("item-icon")} text-white hover:text-black`}>{icon}</span>}
       {children ?? label}
     </>
   );

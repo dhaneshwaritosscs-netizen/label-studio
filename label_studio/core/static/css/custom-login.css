@@ -1,22 +1,29 @@
 /* Force styles to be visible - Cache busting */
 html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
+  height: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
   background: #000 !important;
+  font-family: 'Hellix', sans-serif !important;
+}
+
+* {
+  box-sizing: border-box !important;
 }
 
 .login_page_new_ui {
-  display: flex !important;
+  display: block !important;
   font-weight: 400;
   height: 100vh !important;
   font-family: 'Hellix', sans-serif;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
   color: white !important;
   position: relative;
-  overflow: hidden;
+  overflow: hidden !important;
   width: 100% !important;
+  padding: 0 !important;
 }
 
 /* Animated background particles */
@@ -39,32 +46,51 @@ html, body {
   50% { transform: translateY(-20px) rotate(180deg); }
 }
 
+@keyframes cardFloat {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3), 0 8px 32px rgba(0, 0, 0, 0.2), inset 0 1px 0 rgba(255, 255, 255, 0.3), inset 0 -1px 0 rgba(255, 255, 255, 0.1); }
+  50% { box-shadow: 0 25px 70px rgba(0, 0, 0, 0.4), 0 12px 40px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4), inset 0 -1px 0 rgba(255, 255, 255, 0.2); }
+}
+
 /* Glassmorphism Container */
 .glassmorphism-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 100%;
-  position: relative;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
   z-index: 1;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* Glassmorphism Card */
 .glassmorphism-card {
-  background: rgba(255, 255, 255, 0.1) !important;
-  backdrop-filter: blur(20px) !important;
-  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  background: rgba(255, 255, 255, 0.15) !important;
+  backdrop-filter: blur(30px) !important;
+  -webkit-backdrop-filter: blur(30px) !important;
+  border: 2px solid rgba(255, 255, 255, 0.25) !important;
   border-radius: 20px !important;
-  padding: 40px !important;
-  width: 420px !important;
-  max-width: 90vw !important;
+  padding: 12px !important;
+  width: 380px !important;
+  max-width: 85vw !important;
   box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.1),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+    0 25px 80px rgba(0, 0, 0, 0.4),
+    0 10px 40px rgba(0, 0, 0, 0.3),
+    inset 0 2px 0 rgba(255, 255, 255, 0.4),
+    inset 0 -2px 0 rgba(255, 255, 255, 0.2) !important;
   position: relative;
   overflow: hidden;
   display: block !important;
+  animation: cardFloat 6s ease-in-out infinite;
+  z-index: 10 !important;
 }
 
 .glassmorphism-card::before {
@@ -82,7 +108,7 @@ html, body {
 /* Logo Section */
 .logo-section {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .logo-container {
@@ -92,44 +118,13 @@ html, body {
   gap: 15px;
 }
 
-.logo-icon {
-  width: 60px;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.target-circle {
-  width: 50px;
-  height: 50px;
-  border: 3px solid rgba(255, 255, 255, 0.8);
+.logo-image {
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.target-inner {
-  width: 20px;
-  height: 20px;
-  background: rgba(255, 255, 255, 0.9);
-  border-radius: 50%;
-  position: relative;
-}
-
-.target-inner::after {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 8px;
-  height: 8px;
-  background: #667eea;
-  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
 }
 
 .logo-text {
@@ -143,7 +138,7 @@ html, body {
 /* Auth Tabs */
 .auth-tabs {
   display: flex;
-  margin-bottom: 30px;
+  margin-bottom: 15px;
   background: rgba(255, 255, 255, 0.1);
   border-radius: 12px;
   padding: 4px;
@@ -161,6 +156,9 @@ html, body {
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+  text-align: center;
 }
 
 .tab-button.active {
@@ -177,7 +175,7 @@ html, body {
 /* Welcome Message */
 .welcome-message {
   text-align: center;
-  margin-bottom: 30px;
+  margin-bottom: 20px;
 }
 
 .welcome-message h2 {
@@ -189,11 +187,12 @@ html, body {
 
 /* Form Container */
 .form-container {
-  margin-bottom: 30px;
+  margin-bottom: 4px;
+  margin-top: 4px;
 }
 
 .input-wrapper {
-  margin-bottom: 20px;
+  margin-bottom: 8px;
 }
 
 .input-wrapper label {
@@ -209,16 +208,20 @@ html, body {
 }
 
 .glassmorphism-input {
-  width: 100%;
-  padding: 15px 45px 15px 15px;
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 12px;
-  color: white;
-  font-size: 16px;
-  backdrop-filter: blur(10px);
-  transition: all 0.3s ease;
-  box-sizing: border-box;
+  width: 100% !important;
+  padding: 16px 50px 16px 16px !important;
+  background: rgba(255, 255, 255, 0.12) !important;
+  border: 2px solid rgba(255, 255, 255, 0.25) !important;
+  border-radius: 14px !important;
+  color: white !important;
+  font-size: 16px !important;
+  backdrop-filter: blur(20px) !important;
+  -webkit-backdrop-filter: blur(20px) !important;
+  transition: all 0.4s ease !important;
+  box-sizing: border-box !important;
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.2),
+    inset 0 2px 0 rgba(255, 255, 255, 0.2) !important;
 }
 
 .glassmorphism-input::placeholder {
@@ -230,6 +233,24 @@ html, body {
   border-color: rgba(255, 255, 255, 0.4);
   background: rgba(255, 255, 255, 0.15);
   box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
+}
+
+/* Glassmorphism Select */
+select.glassmorphism-input {
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 16px center !important;
+  background-size: 20px !important;
+  padding-right: 50px !important;
+}
+
+select.glassmorphism-input option {
+  background: rgba(0, 0, 0, 0.9) !important;
+  color: white !important;
+  padding: 10px !important;
 }
 
 .input-icon {
@@ -246,7 +267,8 @@ html, body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 25px;
+  margin-bottom: 8px;
+  margin-top: 5px;
 }
 
 .checkbox-wrapper {
@@ -304,27 +326,54 @@ html, body {
 /* Login Button */
 .glassmorphism-button {
   width: 100%;
-  padding: 15px;
+  padding: 16px 24px;
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   border: none;
-  border-radius: 12px;
+  border-radius: 14px;
   color: white;
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
+  transition: all 0.4s ease;
+  box-shadow: 
+    0 8px 25px rgba(102, 126, 234, 0.5),
+    0 4px 15px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
   text-transform: uppercase;
-  letter-spacing: 1px;
+  letter-spacing: 1.5px;
+  position: relative;
+  overflow: hidden;
+}
+
+.glassmorphism-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.5s;
+}
+
+.glassmorphism-button:hover::before {
+  left: 100%;
 }
 
 .glassmorphism-button:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+  transform: translateY(-3px);
+  box-shadow: 
+    0 12px 35px rgba(102, 126, 234, 0.7),
+    0 8px 25px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.4);
 }
 
 .glassmorphism-button:active {
-  transform: translateY(0);
+  transform: translateY(-1px);
+  box-shadow: 
+    0 6px 20px rgba(102, 126, 234, 0.6),
+    0 3px 10px rgba(0, 0, 0, 0.2),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
 }
 
 /* Error Messages */
@@ -367,7 +416,7 @@ html, body {
 .social-text {
   color: rgba(255, 255, 255, 0.7);
   font-size: 14px;
-  margin-bottom: 15px;
+  margin-bottom: 8px;
 }
 
 .social-buttons {
@@ -403,17 +452,90 @@ html, body {
 .social-button.google .social-icon {
   font-weight: bold;
   font-family: Arial, sans-serif;
+  font-size: 20px;
+}
+
+.social-button.apple .social-icon {
+  font-size: 20px;
 }
 
 /* Responsive Design */
-@media (max-width: 480px) {
+@media (max-width: 768px) {
   .glassmorphism-card {
-    width: 95vw;
-    padding: 30px 20px;
+    width: 90vw;
+    max-width: 350px;
+    padding: 15px 15px;
+  }
+  
+  .logo-section {
+    margin-bottom: 8px;
+  }
+  
+  .welcome-message {
+    margin-bottom: 8px;
+  }
+  
+  .form-container {
+    margin-bottom: 8px;
+  }
+  
+  .input-wrapper {
+    margin-bottom: 12px;
+  }
+  
+  .form-options {
+    margin-bottom: 8px;
+    margin-top: 3px;
   }
   
   .logo-text {
-    font-size: 24px;
+    font-size: 22px;
+  }
+  
+  .welcome-message h2 {
+    font-size: 22px;
+  }
+}
+
+@media (max-width: 480px) {
+  .glassmorphism-card {
+    width: 95vw;
+    max-width: 320px;
+    padding: 12px 12px;
+  }
+  
+  .logo-section {
+    margin-bottom: 12px;
+  }
+  
+  .welcome-message {
+    margin-bottom: 12px;
+  }
+  
+  .form-container {
+    margin-bottom: 8px;
+  }
+  
+  .input-wrapper {
+    margin-bottom: 8px;
+  }
+  
+  .form-options {
+    margin-bottom: 8px;
+    margin-top: 2px;
+  }
+  
+  .auth-tabs {
+    gap: 2px;
+  }
+  
+  .tab-button {
+    padding: 10px 15px;
+    font-size: 12px;
+  }
+  
+  .logo-text {
+    font-size: 20px;
   }
   
   .welcome-message h2 {

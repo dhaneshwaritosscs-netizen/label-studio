@@ -13,36 +13,36 @@
 {% endblock %}
 
 {% block user_content %}
-  <div class="form-wrapper">
-    <h2>Log in</h2>
-    <form id="login-form" action="{% url 'user-login' %}?next={{ next }}" method="post">
-      {% csrf_token %}
-      <div class="input-wrapper">
-        <label>Email Address</label>
-        <input type="text" class="lsf-input-ls" name="email" id="email" value="{{ form.data.email }}">
+  <form id="login-form" action="{% url 'user-login' %}?next={{ next }}" method="post">
+    {% csrf_token %}
+    <div class="input-wrapper">
+      <label>Email/Username</label>
+      <div class="input-container">
+        <input type="text" class="glassmorphism-input" name="email" id="email" value="{{ form.data.email }}" placeholder="Email/Username">
+        <span class="input-icon">🔒</span>
       </div>
-      <div class="input-wrapper">
-        <label>Password</label>
-        <input type="password" class="lsf-input-ls" name="password" id="password">
+    </div>
+    <div class="input-wrapper">
+      <label>Password</label>
+      <div class="input-container">
+        <input type="password" class="glassmorphism-input" name="password" id="password" placeholder="Password">
+        <span class="input-icon">🔒</span>
       </div>
-      {% if form.non_field_errors %}
-        {% for error in form.non_field_errors %}
-          <p class="error">
-            {{ error }}
-          </p>
-        {% endfor %}
-      {% endif %}
-      <div class="form-group">
-        <input type="checkbox" id="persist_session" name="persist_session" class="lsf-checkbox-ls" checked="checked" style="width: auto;" />
+    </div>
+    {% if form.non_field_errors %}
+      {% for error in form.non_field_errors %}
+        <p class="error">
+          {{ error }}
+        </p>
+      {% endfor %}
+    {% endif %}
+    <div class="form-options">
+      <div class="checkbox-wrapper">
+        <input type="checkbox" id="persist_session" name="persist_session" class="glassmorphism-checkbox" checked="checked" />
         <label for="persist_session">Keep me logged in this browser</label>
       </div>
-      <button type="submit" aria-label="Log In" class="lsf-button-ls lsf-button-ls_look_primary">Log in</button>
-    </form>
-  </div>
-  {% if not settings.DISABLE_SIGNUP_WITHOUT_LINK %}
-  <div class="text-wrapper">
-    <p class="">Don't have an account?</p>
-    <a href="{% url 'user-signup' %}{% querystring %}">Sign up</a>
-  </div>
-  {% endif %}
+      <a href="#" class="forgot-password">Forget Password?</a>
+    </div>
+    <button type="submit" class="glassmorphism-button">LOGIN</button>
+  </form>
 {% endblock %}

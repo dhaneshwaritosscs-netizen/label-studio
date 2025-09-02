@@ -56,7 +56,7 @@ export const Filters = injector(({ views, currentView, filters }) => {
           filters.map((filter, i) => (
             <FilterLine
               index={i}
-              filter={filter}
+              filters={filter}
               view={currentView}
               sidebar={sidebarEnabled}
               value={filter.currentValue}

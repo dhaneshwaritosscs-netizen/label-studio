@@ -14,6 +14,7 @@ export const RootPage = ({ content }) => {
       defaultPinned={pinned}
       onSidebarToggle={(visible) => localStorage.setItem("sidebar-opened", visible)}
       onSidebarPin={(pinned) => localStorage.setItem("sidebar-pinned", pinned)}
+      // style={{ background: "black" }}
     >
       <ProjectRoutes content={content} />
     </Menubar>

@@ -36,9 +36,10 @@ const CellRenderer = observer(({ col: colInput, data, decoration, cellViews }) =
       <div
         style={{
           ...(style ?? {}),
-          display: "flex",
+          display: "inline-flex",
           height: "100%",
           alignItems: cellIsLoading ? "" : "center",
+          color: "black",
         }}
       >
         {cellIsLoading ? <SkeletonLoader /> : Renderer ? <Renderer {...renderProps} /> : value}
@@ -59,12 +60,183 @@ export const TableRow = observer(({ data, even, style, wrapperStyle, onClick, st
     disabled: stopInteractions,
   };
 
+  // Find specific columns for card layout
+  const selectColumn = columns.find(col => col.id === 'select');
+  const showSourceColumn = columns.find(col => col.id === 'show-source');
+  const idColumn = columns.find(col => col.id === 'id' || col.alias === 'id');
+  const imageColumn = columns.find(col => col.id === 'image' || col.alias === 'image');
+  
+  // Get all other columns (excluding select, show-source, id, image)
+  const otherColumns = columns.filter(col => 
+    col.id !== 'select' && 
+    col.id !== 'show-source' && 
+    col.id !== 'id' && 
+    col.alias !== 'id' &&
+    col.id !== 'image' && 
+    col.alias !== 'image'
+  );
+
+  // Find specific columns for better layout
+  const completedColumn = otherColumns.find(col => col.id === 'completed' || col.alias === 'completed' || col.id === 'completed_at');
+  const annotatorsColumn = otherColumns.find(col => col.id === 'annotators' || col.alias === 'annotators' || col.id === 'annotated_by');
+
   return (
     <div className={rowWrapperCN.mod(mods).toString()} style={wrapperStyle} onClick={(e) => onClick?.(data, e)}>
       <div className={tableRowCN.toString()} style={style} data-leave={true}>
-        {columns.map((col) => {
-          return <CellRenderer key={col.id} col={col} data={data} cellViews={cellViews} decoration={decoration} />;
-        })}
+        {/* Image Section - Top of Card */}
+        {imageColumn && (
+          <div style={{ 
+            marginBottom: '16px', 
+            borderRadius: '12px', 
+            overflow: 'hidden',
+            width: '100%',
+            height: '180px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            backgroundColor: '#f8fafc',
+            position: 'relative',
+            padding: '20px'
+          }}>
+            <div style={{
+              width: '240px',
+              height: '240px',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              position: 'relative',
+              borderRadius: '12px',
+              overflow: 'hidden',
+              backgroundColor: '#ffffff',
+              boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)'
+            }}>
+              <CellRenderer col={imageColumn} data={data} cellViews={cellViews} decoration={decoration} />
+            </div>
+          </div>
+        )}
+
+        {/* ID Section */}
+        {idColumn && (
+          <div style={{ fontSize: '16px', fontWeight: '600', color: '#1f2937', marginBottom: '8px' }}>
+            ID: {data.id}
+          </div>
+        )}
+
+        {/* Date Section */}
+        <div style={{ fontSize: '14px', color: '#6b7280', fontWeight: '400', marginBottom: '12px' }}>
+          Date: {completedColumn ? (
+            completedColumn.Cell ? (
+              <CellRenderer col={completedColumn} data={data} cellViews={cellViews} decoration={decoration} />
+            ) : (
+              new Date(data.completed_at || data.completed || data.created_at).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+                hour: 'numeric',
+                minute: '2-digit',
+                hour12: true
+              })
+            )
+          ) : (
+            new Date(data.completed_at || data.completed || data.created_at).toLocaleDateString('en-US', {
+              month: 'short',
+              day: 'numeric',
+              year: 'numeric',
+              hour: 'numeric',
+              minute: '2-digit',
+              hour12: true
+            })
+          )}
+        </div>
+
+        {/* Status Badge */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '12px' }}>
+          <div style={{
+            background: data.isCompleted || data.completed_at ? '#10b981' : '#f59e0b',
+            color: '#ffffff',
+            padding: '6px 12px',
+            borderRadius: '20px',
+            fontSize: '12px',
+            fontWeight: '600',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px'
+          }}>
+            {data.isCompleted || data.completed_at ? '✓' : '★'} {data.isCompleted || data.completed_at ? 'Completed' : 'Annotated'}
+          </div>
+        </div>
+
+        {/* Annotated By Section */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '8px', fontSize: '14px', color: '#374151', marginBottom: '16px' }}>
+          <span style={{ fontWeight: '500' }}>Annotated By:</span>
+          {annotatorsColumn ? (
+            <CellRenderer col={annotatorsColumn} data={data} cellViews={cellViews} decoration={decoration} />
+          ) : (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+              <div style={{ 
+                width: '24px', 
+                height: '24px', 
+                borderRadius: '50%', 
+                backgroundColor: '#e5e7eb', 
+                display: 'flex', 
+                alignItems: 'center', 
+                justifyContent: 'center',
+                fontSize: '12px',
+                fontWeight: '600',
+                color: '#6b7280'
+              }}>
+                DH
+              </div>
+              <span style={{ fontSize: '14px', color: '#374151' }}>DH Dhaneshwari</span>
+            </div>
+          )}
+          <div style={{ marginLeft: 'auto', cursor: 'pointer' }}>
+            <span style={{ fontSize: '16px', color: '#9ca3af' }}>⋯</span>
+          </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div style={{ display: 'flex', gap: '8px', marginTop: 'auto' }}>
+          <button style={{
+            background: 'linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))',
+            color: '#ffffff',
+            border: 'none',
+            borderRadius: '6px',
+            padding: '8px 16px',
+            fontSize: '12px',
+            fontWeight: '600',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease'
+          }}>
+            Import
+          </button>
+          <button style={{
+            background: 'linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))',
+            color: '#ffffff',
+            border: 'none',
+            borderRadius: '6px',
+            padding: '8px 16px',
+            fontSize: '12px',
+            fontWeight: '600',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease'
+          }}>
+            Export
+          </button>
+          <button style={{
+            background: 'linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))',
+            color: '#ffffff',
+            border: 'none',
+            borderRadius: '6px',
+            padding: '8px 16px',
+            fontSize: '12px',
+            fontWeight: '600',
+            cursor: 'pointer',
+            transition: 'all 0.2s ease'
+          }}>
+            Label
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -5,6 +5,11 @@ import json
 from core.settings.base import *  # noqa
 from core.utils.secret_key import generate_secret_key_if_missing
 
+CSRF_TRUSTED_ORIGINS = [
+    "http://localhost:8010",
+    "http://127.0.0.1:8010",
+]
+
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = generate_secret_key_if_missing(BASE_DATA_DIR)
 

@@ -38,6 +38,7 @@ export const Menu = forwardRef(
           mix={className}
           style={style}
           onClick={clickHandler}
+          style={{ background: "rgb(231, 237, 255)" }}
         >
           {children}
         </Block>

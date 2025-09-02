@@ -64,37 +64,38 @@ export const PeopleList = ({ onSelect, selectedUser, defaultSelected }) => {
           {usersList ? (
             <Elem name="users">
               <Elem name="header">
-                <Elem name="column" mix="avatar" />
-                <Elem name="column" mix="email">
-                  Email
+                <Elem name="title">People</Elem>
+                <Elem name="search-container">
+                  <Elem name="search-input" placeholder="Search People..." />
                 </Elem>
-                <Elem name="column" mix="name">
-                  Name
-                </Elem>
-                <Elem name="column" mix="last-activity">
-                  Last Activity
+                <Elem name="filters">
+                  <Elem name="filter-button">Filter</Elem>
+                  <Elem name="filter-button">Cersvafile</Elem>
                 </Elem>
               </Elem>
-              <Elem name="body">
+              <Elem name="user-cards">
                 {usersList.map(({ user }) => {
                   const active = user.id === selectedUser?.id;
 
                   return (
-                    <Elem key={`user-${user.id}`} name="user" mod={{ active }} onClick={() => selectUser(user)}>
-                      <Elem name="field" mix="avatar">
-                        <CopyableTooltip title={`User ID: ${user.id}`} textForCopy={user.id}>
-                          <Userpic user={user} style={{ width: 28, height: 28 }} />
-                        </CopyableTooltip>
+                    <Elem key={`user-${user.id}`} name="user-card" mod={{ active }} onClick={() => selectUser(user)}>
+                      <Elem name="user-info">
+                        <Elem name="avatar">
+                          <CopyableTooltip title={`User ID: ${user.id}`} textForCopy={user.id}>
+                            <Userpic user={user} style={{ width: 40, height: 40 }} />
+                          </CopyableTooltip>
+                        </Elem>
+                        <Elem name="details">
+                          <Elem name="email">{user.email}</Elem>
+                          <Elem name="activity">
+                            {formatDistance(new Date(user.last_activity), new Date(), { addSuffix: true })}
+                            <Elem name="status-dot" />
+                          </Elem>
+                        </Elem>
                       </Elem>
-                      <Elem name="field" mix="email">
-                        {user.email}
-                      </Elem>
-                      <Elem name="field" mix="name">
-                        {user.first_name} {user.last_name}
-                      </Elem>
-                      <Elem name="field" mix="last-activity">
-                        {formatDistance(new Date(user.last_activity), new Date(), { addSuffix: true })}
-                      </Elem>
+                      {active && (
+                        <Elem name="view-profile-button">View Profile</Elem>
+                      )}
                     </Elem>
                   );
                 })}

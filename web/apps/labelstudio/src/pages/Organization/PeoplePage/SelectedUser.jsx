@@ -37,39 +37,42 @@ export const SelectedUser = ({ user, onClose }) => {
       </Elem>
 
       <Elem name="header">
-        <Userpic user={user} style={{ width: 64, height: 64, fontSize: 28 }} />
+        <Userpic user={user} style={{ width: 80, height: 80, fontSize: 32 }} />
         <Elem name="info-wrapper">
-          {fullName && <Elem name="full-name">{fullName}</Elem>}
           <Elem tag="p" name="email">
             {user.email}
           </Elem>
+          <Elem name="activity">
+            <Elem name="clock-icon">🕐</Elem>
+            {format(new Date(user.last_activity), "dd MMM yyyy, KK:mm a")}
+          </Elem>
+        </Elem>
+        <Elem name="actions">
+          <Elem name="action-button" title="Contact">✉️</Elem>
+          <Elem name="action-button" title="Settings">⚙️</Elem>
+          <Elem name="action-button" title="Remove">🗑️</Elem>
         </Elem>
       </Elem>
 
-      {user.phone && (
-        <Elem name="section">
-          <a href={`tel:${user.phone}`}>{user.phone}</a>
-        </Elem>
-      )}
+      <Elem name="tabs">
+        <Elem name="tab" mod={{ active: true }}>Projects</Elem>
+        <Elem name="tab">Contributions</Elem>
+      </Elem>
 
-      {!!user.created_projects.length && (
-        <Elem name="section">
-          <Elem name="section-title">Created Projects</Elem>
+      <Elem name="project-grid">
+        {user.created_projects.slice(0, 4).map((project) => (
+          <Elem key={`project-${project.id}`} name="project-card">
+            <Elem name="project-icon">📁</Elem>
+            <Elem name="project-title">{project.title}</Elem>
+            <Elem name="project-type">ML Project</Elem>
+            <Elem name="project-updated">2h ago</Elem>
+            <Elem name="project-button">Open</Elem>
+          </Elem>
+        ))}
+      </Elem>
 
-          <UserProjectsLinks projects={user.created_projects} />
-        </Elem>
-      )}
-
-      {!!user.contributed_to_projects.length && (
-        <Elem name="section">
-          <Elem name="section-title">Contributed to</Elem>
-
-          <UserProjectsLinks projects={user.contributed_to_projects} />
-        </Elem>
-      )}
-
-      <Elem tag="p" name="last-active">
-        Last activity on: {format(new Date(user.last_activity), "dd MMM yyyy, KK:mm a")}
+      <Elem name="create-project">
+        <Button primary>+ Create Project</Button>
       </Elem>
     </Block>
   );

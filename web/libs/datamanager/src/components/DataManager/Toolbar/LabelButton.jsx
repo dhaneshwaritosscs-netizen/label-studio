@@ -89,7 +89,7 @@ export const LabelButton = injector(({ store, canLabel, size, target, selectedCo
             size={size}
             disabled={disabled}
             mod={{ size: size ?? "medium", look: "primary", disabled }}
-            style={primaryStyle}
+            style={{ ...primaryStyle }}
             onClick={onLabelAll}
           >
             Label {selectedCount ? selectedCount : "All"} Task{!selectedCount || selectedCount > 1 ? "s" : ""}
@@ -98,7 +98,7 @@ export const LabelButton = injector(({ store, canLabel, size, target, selectedCo
             ref={triggerRef}
             size={size}
             mod={{ size: size ?? "medium", look: "primary", disabled }}
-            style={triggerStyle}
+            style={{triggerStyle}}
             onClick={toggleOpen}
             aria-label={"Toggle open"}
           >

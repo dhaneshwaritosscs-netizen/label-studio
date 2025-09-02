@@ -204,18 +204,19 @@ export const Table = observer(
 
         return (
           <TableRow
-            key={row.id}
-            data={row}
-            even={isEven}
-            onClick={(row, e) => props.onRowClick(row, e)}
-            stopInteractions={stopInteractions}
-            wrapperStyle={style}
-            style={{
-              height: props.rowHeight,
-              width: props.fitContent ? "fit-content" : "auto",
-            }}
-            decoration={Decoration}
-          />
+          key={row.id}
+          data={row}
+          even={isEven}
+          onClick={(row, e) => props.onRowClick(row, e)}
+          stopInteractions={stopInteractions}
+          wrapperStyle={style}
+          style={{
+            height: props.rowHeight,
+            width: props.fitContent ? "fit-content" : "auto",
+          }}
+          decoration={Decoration}
+        />
+        
         );
       },
       [
@@ -315,23 +316,37 @@ export const Table = observer(
         )}
         <div ref={tableWrapper} className={tableCN.mod({ fit: props.fitToContent }).toString()}>
           <TableContext.Provider value={contextValue}>
-            <StickyList
-              ref={listRef}
-              overscanCount={10}
-              itemHeight={props.rowHeight}
-              totalCount={props.total}
-              itemCount={data.length + 1}
-              itemKey={itemKey}
-              innerElementType={innerElementType}
-              stickyItems={[0]}
-              stickyItemsHeight={[headerHeight]}
-              stickyComponent={renderTableHeader}
-              initialScrollOffset={initialScrollOffset}
-              isItemLoaded={isItemLoaded}
-              loadMore={props.loadMore}
-            >
-              {renderRow}
-            </StickyList>
+            {/* Card Grid Layout - Matching Second Image */}
+            <div style={{ 
+              display: 'grid', 
+              gridTemplateColumns: data.length <= 2 ? 'repeat(2, 1fr)' : 'repeat(auto-fit, minmax(300px, 1fr))', 
+              gap: data.length <= 2 ? '16px' : '20px',
+              padding: '0',
+              maxWidth: data.length <= 2 ? '800px' : '1200px',
+              margin: '0 auto',
+              width: '100%',
+              justifyItems: 'center',
+              alignItems: 'start'
+            }}>
+              {data.map((row, index) => {
+                const isEven = index % 2 === 0;
+                return (
+                  <TableRow
+                    key={row.id}
+                    data={row}
+                    even={isEven}
+                    onClick={(row, e) => props.onRowClick(row, e)}
+                    stopInteractions={stopInteractions}
+                    wrapperStyle={{}}
+                    style={{
+                      height: 'auto',
+                      width: data.length <= 2 ? '350px' : '320px',
+                    }}
+                    decoration={Decoration}
+                  />
+                );
+              })}
+            </div>
           </TableContext.Provider>
         </div>
       </>

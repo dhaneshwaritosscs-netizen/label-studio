@@ -137,7 +137,8 @@ export const Menubar = ({ enabled, defaultOpened, defaultPinned, children, onSid
         <div className={menubarClass}>
           <Dropdown.Trigger dropdown={menuDropdownRef} closeOnClickOutside={!sidebarPinned}>
             <div className={`${menubarClass.elem("trigger")} main-menu-trigger`}>
-              <LSLogo className={`${menubarClass.elem("logo")}`} alt="Label Studio Logo" />
+              {/* <LSLogo className={`${menubarClass.elem("logo")}`} alt="Label Studio Logo" style={{ width: "120px", height: "auto" }} /> */}
+              TOAI Studio
               <Hamburger opened={sidebarOpened} />
             </div>
           </Dropdown.Trigger>
@@ -193,7 +194,8 @@ export const Menubar = ({ enabled, defaultOpened, defaultPinned, children, onSid
               onVisibilityChanged={() => window.dispatchEvent(new Event("resize"))}
               visible={sidebarOpened}
               className={[sidebarClass, sidebarClass.mod({ floating: !sidebarPinned })].join(" ")}
-              style={{ width: 240 }}
+              style={{ width: 240 , background: "" }}
+
             >
               <Menu>
                 {isFF(FF_HOMEPAGE) && <Menu.Item label="Home" to="/" icon={<IconHome />} data-external exact />}
@@ -204,27 +206,27 @@ export const Menubar = ({ enabled, defaultOpened, defaultPinned, children, onSid
 
                 <VersionNotifier showNewVersion />
 
-                <Menu.Item
+                {/* <Menu.Item
                   label="API"
                   href="https://api.labelstud.io/api-reference/introduction/getting-started"
                   icon={<IconTerminal />}
                   target="_blank"
-                />
-                <Menu.Item label="Docs" href="https://labelstud.io/guide" icon={<IconBook />} target="_blank" />
+                /> */}
+                {/* <Menu.Item label="Docs" href="https://labelstud.io/guide" icon={<IconBook />} target="_blank" /> */}
                 <Menu.Item
                   label="GitHub"
-                  href="https://github.com/HumanSignal/label-studio"
+                  href="https://github.com/"
                   icon={<IconGithub />}
                   target="_blank"
                   rel="noreferrer"
                 />
-                <Menu.Item
+                {/* <Menu.Item
                   label="Slack Community"
                   href="https://slack.labelstud.io/?source=product-menu"
                   icon={<IconSlack />}
                   target="_blank"
                   rel="noreferrer"
-                />
+                /> */}
 
                 <VersionNotifier showCurrentVersion />
 
