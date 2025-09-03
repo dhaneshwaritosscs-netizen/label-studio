@@ -167,6 +167,8 @@ export const ProjectsPage = () => {
               fontWeight: "600",
               boxShadow: "0 8px 25px rgba(102, 126, 234, 0.3)",
               transition: "all 0.3s ease",
+              width: "250px",
+              minWidth: "200px",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = "translateY(-2px)";
@@ -191,6 +193,8 @@ export const ProjectsPage = () => {
               fontSize: "16px",
               fontWeight: "600",
               transition: "all 0.3s ease",
+              width: "250px",
+              minWidth: "200px",
             }}
             onMouseEnter={(e) => {
               e.currentTarget.style.transform = "translateY(-2px)";

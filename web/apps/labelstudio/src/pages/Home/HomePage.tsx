@@ -89,13 +89,13 @@ export const HomePage: Page = () => {
             <div className="absolute top-4 left-4 w-2 h-2 bg-gray-800 rounded-full"></div>
             <div className="absolute top-6 right-6 w-1.5 h-1.5 bg-gray-800 rounded-full"></div>
             <div className="absolute bottom-4 left-8 w-1 h-1 bg-gray-800 rounded-full"></div>
-            
+
             {/* TOAI Studio Badge */}
             <div className="inline-flex items-center gap-3 px-4 py-2 bg-blue-100 rounded-full border border-blue-200 mb-6">
               <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
               <span className="text-blue-700 text-sm font-medium">TOAI Studio</span>
             </div>
-            
+
             {/* Welcome Message */}
             <div className="flex flex-col gap-4 items-center">
               <h1 className="text-4xl font-bold text-gray-800 mb-2">
@@ -105,13 +105,13 @@ export const HomePage: Page = () => {
                 Powered by Toss Consultancy Services
               </p>
               <p className="text-gray-500 text-base">
-              Let's get you started with your AI journey
+                Let's get you started with your AI journey
               </p>
             </div>
           </div>
-          
+
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row justify-center gap-4 w-full max-w-md">
+          <div className="flex flex-col sm:flex-row justify-center gap-4 w-full max-w-md  ">
             {actions.map((action) => {
               const isCreateProject = action.title === "Create Project";
               return (
@@ -119,14 +119,22 @@ export const HomePage: Page = () => {
                   key={action.title}
                   variant="primary"
                   size="medium"
-                  className={`flex-1 sm:flex-none text-base font-medium gap-3 border-0 shadow-sm hover:shadow-md transition-all duration-200 py-3 px-6 rounded-lg ${
-                    isCreateProject 
-                      ? "text-white bg-blue-600 hover:bg-blue-700" 
-                      : "text-blue-600 bg-white border border-blue-300 hover:bg-gray-50"
-                  }`}
+                                     className={`group flex-1 sm:flex-none text-base font-medium gap-3 border-0 shadow-sm hover:shadow-md transition-all duration-200 py-3 px-6 rounded-lg ${isCreateProject
+                       ? "text-white"
+                       : "text-blue-600 bg-white border border-blue-300 hover:bg-gray-50"
+                     }`}
+                                     style={isCreateProject ? {
+                     background: "linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))",
+                     width: "200px",
+                     minWidth: "200px"
+                   } : {
+                     width: "200px",
+                     minWidth: "200px",
+                     color: "#2563eb"
+                   }}
                   onClick={handleActions(action.type)}
                 >
-                  <action.icon className={`w-5 h-5 ${isCreateProject ? "text-white" : "text-blue-600"}`} />
+                                     <action.icon className={`w-5 h-5 ${isCreateProject ? "text-white" : "text-blue-600 group-hover:text-blue-600"}`} />
                   {action.title}
                 </Button>
               );
@@ -144,51 +152,56 @@ export const HomePage: Page = () => {
                   <IconFolderOpen className="w-6 h-6 text-blue-600" />
                   <h2 className="text-xl font-bold text-gray-800">Your Projects</h2>
                 </div>
-                
-            {isFetching ? (
-              <div className="h-64 flex justify-center items-center">
-                <div className="flex flex-col items-center gap-4">
-                  <Spinner size={48} />
+
+                {isFetching ? (
+                  <div className="h-64 flex justify-center items-center">
+                    <div className="flex flex-col items-center gap-4">
+                      <Spinner size={48} />
                       <span className="text-gray-600">Loading your projects...</span>
-                </div>
-              </div>
-            ) : isError ? (
-              <div className="h-64 flex justify-center items-center">
-                <div className="flex flex-col items-center gap-4 text-center">
-                  <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
-                    <IconFolderOpen className="w-8 h-8 text-red-500" />
+                    </div>
                   </div>
-                  <span className="text-red-600 font-medium">Unable to load projects</span>
+                ) : isError ? (
+                  <div className="h-64 flex justify-center items-center">
+                    <div className="flex flex-col items-center gap-4 text-center">
+                      <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center">
+                        <IconFolderOpen className="w-8 h-8 text-red-500" />
+                      </div>
+                      <span className="text-red-600 font-medium">Unable to load projects</span>
                       <span className="text-gray-500 text-sm">Please try refreshing the page</span>
-                </div>
-              </div>
+                    </div>
+                  </div>
                 ) : isSuccess && data && data.results.length === 0 ? (
                   <div className="flex flex-col justify-center items-center border-2 border-dashed border-gray-200 bg-gray-50 rounded-lg h-80 p-8 text-center">
                     <div className="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center shadow-sm mb-6">
-                  <IconFolderOpen className="w-10 h-10 text-white" />
-                </div>
+                      <IconFolderOpen className="w-10 h-10 text-white" />
+                    </div>
                     <Heading size={2} className="text-gray-800 mb-3">
-                  Create your first project in TOAI Studio
-                </Heading>
+                      Create your first project in TOAI Studio
+                    </Heading>
                     <Sub className="text-gray-600 mb-6 max-w-md">
-                  Import your data and set up the labeling interface to start annotating
-                </Sub>
-                <Button 
-                  variant="primary"
-                  size="medium"
-                      className="px-8 py-3 text-lg font-medium bg-blue-600 hover:bg-blue-700 border-0 shadow-sm hover:shadow-md transition-all duration-200 rounded-lg"
-                  onClick={() => setCreationDialogOpen(true)}
-                >
-                  Create Project
-                </Button>
-              </div>
+                      Import your data and set up the labeling interface to start annotating
+                    </Sub>
+                    <Button
+                      variant="primary"
+                      size="medium"
+                      className="px-8 py-3 text-lg font-medium border-0 shadow-sm hover:shadow-md transition-all duration-200 rounded-lg"
+                      style={{
+                        background: "linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))",
+                        width: "200px",
+                        minWidth: "200px"
+                      }}
+                      onClick={() => setCreationDialogOpen(true)}
+                    >
+                      Create Project
+                    </Button>
+                  </div>
                 ) : isSuccess && data && data.results.length > 0 ? (
                   <div className="flex flex-col gap-3">
                     {data.results.slice(0, 4).map((project) => {
                       return <AdvancedProjectCard key={project.id} project={project} />;
-                })}
-              </div>
-            ) : null}
+                    })}
+                  </div>
+                ) : null}
               </div>
             </div>
 
@@ -348,7 +361,7 @@ export const HomePage: Page = () => {
           </div>
         </section>
       </div>
-      
+
       {creationDialogOpen && <CreateProject onClose={() => setCreationDialogOpen(false)} />}
       <InviteLink opened={invitationOpen} onClosed={() => setInvitationOpen(false)} />
     </main>
@@ -367,7 +380,7 @@ function AdvancedProjectCard({
   const finished = project.finished_task_number ?? 0;
   const total = project.task_number ?? 0;
   const progress = (total > 0 ? finished / total : 0) * 100;
-  
+
   // Generate project type and model based on title
   const getProjectDetails = (title: string) => {
     const lowerTitle = title.toLowerCase();
@@ -403,28 +416,31 @@ function AdvancedProjectCard({
           <h3 className="text-gray-800 font-bold text-sm group-hover:text-blue-600 transition-colors duration-200">
             {project.title}
           </h3>
-          
+
           {/* Project Model */}
           <p className="text-gray-500 text-xs mt-1">
             {model}
           </p>
-          
+
           {/* Progress Text */}
           <p className="text-gray-600 text-xs mt-1">
             {finished} of {total} Tasks ({total > 0 ? Math.round((finished / total) * 100) : 0}%)
           </p>
-          
+
           {/* New Project Label */}
-          <span className="inline-block bg-blue-600 text-white text-xs px-2 py-1 rounded mt-2">
+          <span className="inline-block text-white text-xs px-2 py-1 rounded mt-2"
+            style={{
+              background: "linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))"
+            }}>
             New Project
           </span>
-          
+
           {/* Additional Task Info */}
           <p className="text-gray-500 text-xs mt-1">
             {Math.floor(Math.random() * 5) + 1}/{Math.floor(Math.random() * 100) + 200} Tasks ({Math.floor(Math.random() * 20)}%)
           </p>
         </div>
-        
+
         {/* Circular Progress Indicator */}
         <div className="flex items-center gap-3">
           <div className="relative w-12 h-12">
@@ -463,7 +479,7 @@ function ProjectCard({
   const finished = project.finished_task_number ?? 0;
   const total = project.task_number ?? 0;
   const progress = (total > 0 ? finished / total : 0) * 100;
-  
+
   // Generate project type based on title or use a default
   const getProjectType = (title: string) => {
     const lowerTitle = title.toLowerCase();
@@ -488,24 +504,24 @@ function ProjectCard({
           <h3 className="text-base font-bold text-gray-800 group-hover:text-blue-600 transition-colors duration-200">
             {project.title}
           </h3>
-          
+
           {/* Project Type */}
           <p className="text-sm text-gray-500 font-medium">
             {getProjectType(project.title)}
           </p>
-          
+
           {/* Progress Text */}
           <p className="text-sm text-gray-600 font-medium">
             {finished} of {total} Tasks ({total > 0 ? Math.round((finished / total) * 100) : 0}%)
           </p>
-          
+
           {/* Progress Bar */}
           <div className="flex items-center gap-2">
             <div className="flex-1 bg-gray-200 rounded-full overflow-hidden h-2">
-              <div 
-                className="h-full bg-blue-600 rounded-full transition-all duration-500 ease-out" 
-              style={{ width: `${progress}%` }} 
-            />
+              <div
+                className="h-full bg-blue-600 rounded-full transition-all duration-500 ease-out"
+                style={{ width: `${progress}%` }}
+              />
             </div>
           </div>
         </div>
