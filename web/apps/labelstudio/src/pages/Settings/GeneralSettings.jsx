@@ -6,7 +6,7 @@ import { RadioGroup } from "../../components/Form/Elements/RadioGroup/RadioGroup
 import { ProjectContext } from "../../providers/ProjectProvider";
 import { Block, Elem } from "../../utils/bem";
 import "./settings.scss";
-import { HeidiTips } from "../../components/HeidiTips/HeidiTips";
+
 import { FF_LSDV_E_297, isFF } from "../../utils/feature-flags";
 import { createURL } from "../../components/HeidiTips/utils";
 import { Caption } from "../../components/Caption/Caption";
@@ -118,7 +118,7 @@ export const GeneralSettings = () => {
           </Form>
         </Block>
       </Elem>
-      {isFF(FF_LSDV_E_297) && <HeidiTips collection="projectSettings" />}
+
     </Block>
   );
 };

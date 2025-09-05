@@ -1,7 +1,7 @@
 import type { Page } from "../types/Page";
 import { SimpleCard, Spinner, Button } from "@humansignal/ui";
 import { IconExternal, IconFolderAdd, IconHumanSignal, IconUserAdd, IconFolderOpen } from "@humansignal/icons";
-import { HeidiTips } from "../../components/HeidiTips/HeidiTips";
+
 import { useQuery } from "@tanstack/react-query";
 import { useAPI } from "../../providers/ApiProvider";
 import { useState } from "react";
@@ -91,19 +91,39 @@ export const HomePage: Page = () => {
             <div className="absolute bottom-4 left-8 w-1 h-1 bg-gray-800 rounded-full"></div>
 
             {/* TOAI Studio Badge */}
-            <div className="inline-flex items-center gap-3 px-4 py-2 bg-blue-100 rounded-full border border-blue-200 mb-6">
-              <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
-              <span className="text-blue-700 text-sm font-medium">TOAI Studio</span>
-            </div>
+            {/* <div className="inline-flex items-center gap-4 px-6 py-4 bg-blue-100 rounded-full border border-blue-200 mb-6">
+              <div className="w-3 h-3 bg-blue-600 rounded-full animate-pulse"></div>
+              <img 
+                src="/static/images/icon.png" 
+                alt="TOAI Studio" 
+                style={{ 
+                  height: "32px", 
+                  width: "auto",
+                  objectFit: "contain"
+                }} 
+              />
+            </div> */}
 
             {/* Welcome Message */}
             <div className="flex flex-col gap-4 items-center">
-              <h1 className="text-4xl font-bold text-gray-800 mb-2">
-                Welcome to TOAI Studio
+              <h1 className="text-4xl font-bold text-gray-800 mb-2 flex items-center gap-3">
+                Welcome to
+                <img
+                  src="/static/images/icon.png"
+                  alt="TOAI Studio"
+                  style={{
+                    height: "100px",
+                    width: "auto",
+                    objectFit: "contain",
+                    marginTop: "10px"
+                  }}
+                />
               </h1>
-              <p className="text-gray-600 text-lg">
+              <p
+                className="text-gray-600 text-lg">
                 Powered by Toss Consultancy Services
               </p>
+
               <p className="text-gray-500 text-base">
                 Let's get you started with your AI journey
               </p>
@@ -119,22 +139,22 @@ export const HomePage: Page = () => {
                   key={action.title}
                   variant="primary"
                   size="medium"
-                                     className={`group flex-1 sm:flex-none text-base font-medium gap-3 border-0 shadow-sm hover:shadow-md transition-all duration-200 py-3 px-6 rounded-lg ${isCreateProject
-                       ? "text-white"
-                       : "text-blue-600 bg-white border border-blue-300 hover:bg-gray-50"
-                     }`}
-                                     style={isCreateProject ? {
-                     background: "linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))",
-                     width: "200px",
-                     minWidth: "200px"
-                   } : {
-                     width: "200px",
-                     minWidth: "200px",
-                     color: "#2563eb"
-                   }}
+                  className={`group flex-1 sm:flex-none text-base font-medium gap-3 border-0 shadow-sm hover:shadow-md transition-all duration-200 py-3 px-6 rounded-lg ${isCreateProject
+                    ? "text-white"
+                    : "text-blue-600 bg-white border border-blue-300 hover:bg-gray-50"
+                    }`}
+                  style={isCreateProject ? {
+                    background: "linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))",
+                    width: "200px",
+                    minWidth: "200px"
+                  } : {
+                    width: "200px",
+                    minWidth: "200px",
+                    color: "#2563eb"
+                  }}
                   onClick={handleActions(action.type)}
                 >
-                                     <action.icon className={`w-5 h-5 ${isCreateProject ? "text-white" : "text-blue-600 group-hover:text-blue-600"}`} />
+                  <action.icon className={`w-5 h-5 ${isCreateProject ? "text-white" : "text-blue-600 group-hover:text-blue-600"}`} />
                   {action.title}
                 </Button>
               );

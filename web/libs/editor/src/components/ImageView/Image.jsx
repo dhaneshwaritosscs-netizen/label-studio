@@ -44,38 +44,19 @@ export const Image = observer(
     return (
       <Block name="image" style={imageSize}>
         {overlay}
-        <ImageProgress
-          downloading={imageEntity.downloading}
-          progress={imageEntity.progress}
-          error={imageEntity.error}
-          src={imageEntity.src}
-          usedValue={usedValue}
+        <ImageRenderer
+          alt="image"
+          ref={ref}
+          src={imageEntity.currentSrc}
+          onLoad={onLoad}
+          isLoaded={imageEntity.imageLoaded}
+          imageTransform={imageTransform}
         />
-        {imageEntity.downloaded ? (
-          <ImageRenderer
-            alt="image"
-            ref={ref}
-            src={imageEntity.currentSrc}
-            onLoad={onLoad}
-            isLoaded={imageEntity.imageLoaded}
-            imageTransform={imageTransform}
-          />
-        ) : null}
       </Block>
     );
   }),
 );
 
-const ImageProgress = observer(({ downloading, progress, error, src, usedValue }) => {
-  return downloading ? (
-    <Block name="image-progress">
-      <Elem name="message">Downloading image</Elem>
-      <Elem tag="progress" name="bar" value={progress} min="0" max={1} step={0.0001} />
-    </Block>
-  ) : error ? (
-    <ImageLoadingError src={src} value={usedValue} />
-  ) : null;
-});
 
 const imgDefaultProps = {};
 

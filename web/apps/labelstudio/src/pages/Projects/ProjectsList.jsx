@@ -161,7 +161,7 @@ export const ProjectsList = ({ projects, pageSize }) => {
 export const EmptyProjectsList = ({ openModal }) => {
   return (
     <Block name="empty-projects-page">
-      <Elem name="heidi" tag="img" src={absoluteURL("/static/images/opossum_looking.png")} />
+
       <Elem name="header" tag="h1">
         Heidi doesn’t see any projects here!
       </Elem>

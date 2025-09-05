@@ -159,7 +159,7 @@ export const ProjectsPage = () => {
             look="primary" 
             size="large"
             style={{
-              background: "linear-gradient(135deg, #667eea, #764ba2)",
+              background: "linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))",
               border: "none",
               padding: "16px 32px",
               borderRadius: "12px",
@@ -276,7 +276,27 @@ ProjectsPage.routes = ({ store }) => [
 ProjectsPage.context = ({ openModal, showButton }) => {
   if (!showButton) return null;
   return (
-    <Button onClick={openModal} look="primary" size="compact">
+    <Button 
+      onClick={openModal} 
+      look="primary" 
+      size="compact"
+      style={{
+        background: "linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))",
+        border: "none",
+        color: "#ffffff",
+        fontWeight: "600",
+        boxShadow: "0 4px 12px rgba(102, 126, 234, 0.3)",
+        transition: "all 0.3s ease",
+      }}
+      onMouseEnter={(e) => {
+        e.currentTarget.style.transform = "translateY(-1px)";
+        e.currentTarget.style.boxShadow = "0 6px 16px rgba(102, 126, 234, 0.4)";
+      }}
+      onMouseLeave={(e) => {
+        e.currentTarget.style.transform = "translateY(0)";
+        e.currentTarget.style.boxShadow = "0 4px 12px rgba(102, 126, 234, 0.3)";
+      }}
+    >
       Create
     </Button>
   );

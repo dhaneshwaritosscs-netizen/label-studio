@@ -95,9 +95,23 @@
     }
 
     &_selected {
-      background-color: #eff6ff;
-      border-color: #3b82f6;
+      //background: linear-gradient(135deg, rgb(102, 126, 234) 0%, rgb(118, 75, 162) 100%);
+      background: linear-gradient(135deg, rgb(138, 151, 207) 0%, rgb(118, 75, 162) 100%);
+     //background: linear-gradient(135deg, #00d2ff, #3a7bd5);      border-color: #3b82f6;
       box-shadow: 0 4px 6px rgba(59, 130, 246, 0.1), 0 1px 2px rgba(59, 130, 246, 0.06);
+      color: #ffffff;
+      
+      * {
+        color: #f7eeee !important;
+        
+      }
+      
+      button {
+        background: linear-gradient(135deg, rgb(138, 151, 207) 0%, rgb(118, 75, 162) 100%);
+      // background: linear-gradient(135deg, #ff6a00, #ee0979);
+       color: #f3eded !important;
+        border: 1.5px solid rgba(8, 8, 8, 0.3) !important;
+      }
     }
 
     &:not(.table__row_wrapper_selected):hover {

@@ -43,7 +43,7 @@
     line-height: 16px;
     letter-spacing: 0.4px;
     text-align: left;
-    color: var(--color-neutral-content);
+    color: #ffffff !important;
   }
 
   &__entity-id {
@@ -52,7 +52,7 @@
     line-height: 16px;
     letter-spacing: 0.4px;
     text-align: left;
-    color: var(--color-neutral-content-subtler);
+    color: #ffffff !important;
     margin-left: 8px;
   }
 
@@ -62,7 +62,7 @@
     line-height: 16px;
     letter-spacing: 0.4px;
     text-align: left;
-    color: var(--color-neutral-content-subtler);
+    color: #ffffff !important;
   }
 
   &:hover {
@@ -71,11 +71,19 @@
     border-bottom-color: transparent;
 
     & .annotation-button__name {
-      color: var(--color-neutral-content);
+      color: #ffffff !important;
     }
 
     & .annotation-button__created {
-      color: var(--color-neutral-content);
+      color: #ffffff !important;
+    }
+
+    & .annotation-button__entity-id {
+      color: #ffffff !important;
+    }
+
+    & .annotation-button__info {
+      color: #ffffff !important;
     }
 
     & .annotation-button__trigger {
@@ -84,15 +92,16 @@
   }
 
   &_selected {
-    background-color: var(--color-neutral-background);
+    background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162));
     border-color: var(--color-neutral-border);
     transform: translate(0, 1px);
     margin-top: 1px;
     height: calc(100% - 2px);
+    color: #ffffff;
 
     &:hover {
       cursor: default;
-      background-color: var(--color-neutral-background);
+      background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162));
       border-color: var(--color-neutral-border);
     }
 
@@ -101,11 +110,15 @@
     }
 
     & .annotation-button__created {
-      color: var(--color-neutral-content);
+      color: #ffffff;
     }
 
     & .annotation-button__name {
-      color: var(--color-neutral-content);
+      color: #ffffff;
+    }
+
+    & .annotation-button__entity-id {
+      color: rgba(255, 255, 255, 0.8);
     }
   }
 
@@ -130,7 +143,7 @@
     transform: rotate(90deg);
     display: flex;
     border-radius: 4px;
-    color: var(--color-neutral-content-subtler);
+    color: #ffffff !important;
     visibility: hidden;
     padding: var(--spacing-tighter);
     border: 1px solid var(--trigger-border-color);
@@ -144,7 +157,7 @@
 
     &:hover {
       cursor: pointer;
-      color: var(--color-neutral-content);
+      color: #ffffff !important;
       background: var(--color-primary-emphasis-subtle);
       border-color: var(--color-primary-border-subtle);
     }

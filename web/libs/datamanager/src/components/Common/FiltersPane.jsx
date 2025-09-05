@@ -22,7 +22,7 @@ export const FiltersButton = buttonInjector(
       const hasFilters = activeFiltersNumber > 0;
 
       return (
-        <Button ref={ref} style={{backgroundColor: "rgb(38, 72, 173)"}} size={size} onClick={() => sidebarEnabled && viewsStore.toggleSidebar()} {...rest}>
+        <Button ref={ref} style={{background: "rgb(25, 44, 89) !important", color: "#ffffff !important", border: "none !important", borderRadius: "6px"}} size={size} onClick={() => sidebarEnabled && viewsStore.toggleSidebar()} {...rest}>
           Filters{" "}
           {hasFilters && (
             <Badge size="small" style={{ marginLeft: 5 }}>

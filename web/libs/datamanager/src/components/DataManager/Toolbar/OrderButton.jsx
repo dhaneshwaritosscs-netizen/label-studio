@@ -1,8 +1,9 @@
 import { inject } from "mobx-react";
-import { IconSortDown, IconSortUp } from "@humansignal/icons";
+import { IconSortDown, IconSortUp, IconChevronDown } from "@humansignal/icons";
 import { Button } from "../../Common/Button/Button";
 import { FieldsButton } from "../../Common/FieldsButton";
 import { Space } from "../../Common/Space/Space";
+import { Icon } from "../../Common/Icon/Icon";
 
 const injector = inject(({ store }) => {
   const view = store?.currentView;
@@ -16,15 +17,16 @@ const injector = inject(({ store }) => {
 export const OrderButton = injector(({ size, ordering, view, ...rest }) => {
   return (
     <Space style={{ fontSize: 12 }}>
-      <Button.Group collapsed {...rest}>
+      <div style={{ display: "flex", gap: "8px" }}>
         <FieldsButton
           size={size}
-          style={{ minWidth: 67, textAlign: "left", marginRight: -1 }}
+          style={{ minWidth: 67, textAlign: "left" }}
           title={ordering ? ordering.column?.title : "Order by"}
           onClick={(col) => view.setOrdering(col.id)}
           onReset={() => view.setOrdering(null)}
           resetTitle="Default"
           selected={ordering?.field}
+          trailingIcon={<Icon icon={IconChevronDown} style={{ color: "#ffffff" }} />}
           wrapper={({ column, children }) => (
             <Space style={{ width: "100%", justifyContent: "space-between" }}>
               {children}
@@ -48,10 +50,23 @@ export const OrderButton = injector(({ size, ordering, view, ...rest }) => {
         <Button
           size={size}
           disabled={!!ordering === false}
-          icon={ordering?.desc ? <IconSortUp /> : <IconSortDown />}
           onClick={() => view.setOrdering(ordering?.field)}
-        />
-      </Button.Group>
+          style={{
+            background: "rgb(25, 44, 89) !important",
+            color: "#ffffff !important",
+            border: "none !important",
+            borderRadius: "6px",
+            padding: "8px 16px",
+            fontSize: "12px",
+            fontWeight: "600",
+            cursor: "pointer",
+            transition: "all 0.2s ease",
+            minWidth: "60px"
+          }}
+        >
+          Sort
+        </Button>
+      </div>
     </Space>
   );
 });

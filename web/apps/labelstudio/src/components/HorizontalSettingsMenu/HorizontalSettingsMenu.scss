@@ -1,0 +1,114 @@
+.horizontal-settings-menu {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  max-height: calc(100vh - var(--header-height));
+
+  &__navigation {
+    width: 100%;
+    display: flex;
+    transition: border 400ms ease-out;
+    border-bottom: 1px solid var(--color-neutral-border);
+    background: var(--color-neutral-background);
+    padding: 0 1rem;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+
+    @media (min-width: 768px) {
+      padding: 0 2rem;
+    }
+
+    & .main-menu {
+      background: transparent;
+      border-right: none;
+      flex-direction: row;
+      padding: 0;
+      gap: 0;
+      width: 100%;
+      justify-content: space-between;
+      overflow-x: auto;
+      scrollbar-width: thin;
+
+      &::-webkit-scrollbar {
+        height: 4px;
+      }
+
+      &::-webkit-scrollbar-track {
+        background: transparent;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: var(--color-neutral-border);
+        border-radius: 2px;
+      }
+
+      &__item {
+        background: transparent;
+        height: 48px;
+        padding: 0 12px;
+        border-radius: 0;
+        border-bottom: 3px solid transparent;
+        white-space: nowrap;
+        flex: 1;
+        font-weight: 500;
+        color: var(--color-neutral-content-subtler);
+        transition: all 150ms ease-out;
+        font-size: 14px;
+        text-align: center;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @media (min-width: 768px) {
+          padding: 0 20px;
+          font-size: 16px;
+        }
+
+        &:hover {
+          color: var(--color-neutral-content);
+          background: var(--color-primary-emphasis-subtle);
+        }
+
+        &_active {
+          color: var(--color-primary-content);
+          background: var(--color-primary-emphasis-subtle);
+          border-bottom-color: var(--color-primary-content);
+          font-weight: 600;
+        }
+
+        &-beta {
+          background-color: var(--color-accent-plum-base);
+          color: var(--color-accent-plum-subtlest);
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 500;
+          line-height: 16px;
+          margin-left: 8px;
+          padding: 2px 8px;
+          border-radius: 12px;
+        }
+
+        &_look {
+          &_danger {
+            color: var(--color-negative-content);
+          }
+        }
+
+        &_dangerous {
+          color: var(--color-negative-content);
+
+          &:hover {
+            color: var(--color-neutral-content) !important;
+            background-color: var(--color-negative-emphasis-subtle) !important;
+          }
+        }
+      }
+    }
+  }
+
+  &__content {
+    flex: 1;
+    overflow: auto;
+    padding: 2rem;
+    background: var(--color-neutral-background);
+  }
+}

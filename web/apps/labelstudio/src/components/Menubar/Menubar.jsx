@@ -137,8 +137,15 @@ export const Menubar = ({ enabled, defaultOpened, defaultPinned, children, onSid
         <div className={menubarClass}>
           <Dropdown.Trigger dropdown={menuDropdownRef} closeOnClickOutside={!sidebarPinned}>
             <div className={`${menubarClass.elem("trigger")} main-menu-trigger`}>
-              {/* <LSLogo className={`${menubarClass.elem("logo")}`} alt="Label Studio Logo" style={{ width: "120px", height: "auto" }} /> */}
-              TOAI Studio
+              <img 
+                src="/static/images/icon.png" 
+                alt="TOAI Studio" 
+                style={{ 
+                  width: "120px", 
+                  height: "auto",
+                  objectFit: "contain"
+                }} 
+              />
               <Hamburger opened={sidebarOpened} />
             </div>
           </Dropdown.Trigger>

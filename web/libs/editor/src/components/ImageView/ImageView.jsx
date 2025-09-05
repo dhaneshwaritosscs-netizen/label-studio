@@ -11,7 +11,6 @@ import styles from "./ImageView.module.scss";
 import { errorBuilder } from "../../core/DataValidator/ConfigValidator";
 import { chunks, findClosestParent } from "../../utils/utilities";
 import Konva from "konva";
-import { LoadingOutlined } from "@ant-design/icons";
 import { Toolbar } from "../Toolbar/Toolbar";
 import { ImageViewProvider } from "./ImageViewContext";
 import { Hotkey } from "../../core/Hotkey";
@@ -993,53 +992,47 @@ export default observer(
               </div>
             )}
             {/* @todo this is dirty hack; rewrite to proper async waiting for data to load */}
-            {stageLoading || !toolsReady ? (
-              <div className={styles.loading}>
-                <LoadingOutlined />
-              </div>
-            ) : imageIsLoaded ? (
-              <EntireStage
-                item={item}
-                crosshairRef={this.crosshairRef}
-                onClick={this.handleOnClick}
-                imagePositionClassnames={imagePositionClassnames}
-                state={this.state}
-                onMouseEnter={() => {
-                  if (this.crosshairRef.current) {
-                    this.crosshairRef.current.updateVisibility(true);
-                  }
-                }}
-                onMouseLeave={(e) => {
-                  if (this.crosshairRef.current) {
-                    this.crosshairRef.current.updateVisibility(false);
-                  }
-                  const { width: stageWidth, height: stageHeight } = item.canvasSize;
-                  const { offsetX: mouseposX, offsetY: mouseposY } = e.evt;
-                  const newEvent = { ...e };
+            <EntireStage
+              item={item}
+              crosshairRef={this.crosshairRef}
+              onClick={this.handleOnClick}
+              imagePositionClassnames={imagePositionClassnames}
+              state={this.state}
+              onMouseEnter={() => {
+                if (this.crosshairRef.current) {
+                  this.crosshairRef.current.updateVisibility(true);
+                }
+              }}
+              onMouseLeave={(e) => {
+                if (this.crosshairRef.current) {
+                  this.crosshairRef.current.updateVisibility(false);
+                }
+                const { width: stageWidth, height: stageHeight } = item.canvasSize;
+                const { offsetX: mouseposX, offsetY: mouseposY } = e.evt;
+                const newEvent = { ...e };
 
-                  if (mouseposX <= 0) {
-                    e.offsetX = 0;
-                  } else if (mouseposX >= stageWidth) {
-                    e.offsetX = stageWidth;
-                  }
+                if (mouseposX <= 0) {
+                  e.offsetX = 0;
+                } else if (mouseposX >= stageWidth) {
+                  e.offsetX = stageWidth;
+                }
 
-                  if (mouseposY <= 0) {
-                    e.offsetY = 0;
-                  } else if (mouseposY >= stageHeight) {
-                    e.offsetY = stageHeight;
-                  }
-                  this.handleMouseMove(newEvent);
-                }}
-                onDragMove={this.updateCrosshair}
-                onMouseDown={this.handleMouseDown}
-                onMouseMove={this.handleMouseMove}
-                onMouseUp={this.handleMouseUp}
-                onWheel={item.zoom ? this.handleZoom : () => {}}
-              />
-            ) : null}
+                if (mouseposY <= 0) {
+                  e.offsetY = 0;
+                } else if (mouseposY >= stageHeight) {
+                  e.offsetY = stageHeight;
+                }
+                this.handleMouseMove(newEvent);
+              }}
+              onDragMove={this.updateCrosshair}
+              onMouseDown={this.handleMouseDown}
+              onMouseMove={this.handleMouseMove}
+              onMouseUp={this.handleMouseUp}
+              onWheel={item.zoom ? this.handleZoom : () => {}}
+            />
           </div>
 
-          {toolsReady && imageIsLoaded && this.renderTools()}
+          {toolsReady && this.renderTools()}
           {item.images.length > 1 && (
             <div className={styles.gallery}>
               {item.images.map((src, i) => (

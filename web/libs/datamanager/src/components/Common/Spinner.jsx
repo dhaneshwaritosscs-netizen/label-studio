@@ -37,20 +37,24 @@ export const Spinner = injector(({ SDK, visible = true, ...props }) => {
   return visible ? (
     <div
       {...props}
-      style={{ width: size, height: size }}
+      style={{ 
+        width: size, 
+        height: size,
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center'
+      }}
       children={
-        <div style={{ width: "100%", height: "100%" }}>
-          {ExternalSpinner ? (
-            <ExternalSpinner size={size} />
-          ) : (
-            <img
-              src={source.x1}
-              srcSet={[`${source.x1} 1x`, `${source.x2} 2x`].join(",")}
-              style={videoStyles}
-              alt="opossum loader"
-            />
-          )}
-        </div>
+        <div 
+          style={{ 
+            width: size * 0.6, 
+            height: size * 0.6,
+            border: '3px solid #f3f3f3',
+            borderTop: '3px solid #667eea',
+            borderRadius: '50%',
+            animation: 'spin 1s linear infinite'
+          }}
+        />
       }
     />
   ) : null;

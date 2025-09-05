@@ -18,9 +18,20 @@ document.addEventListener('DOMContentLoaded', function() {
   const loginTab = document.querySelector('[data-tab="login"]');
   const signupTab = document.querySelector('[data-tab="signup"]');
   
+  // Function to update active tab styling
+  function updateActiveTab(activeTab) {
+    // Remove active class from both tabs
+    loginTab.classList.remove('active');
+    signupTab.classList.remove('active');
+    
+    // Add active class to the clicked tab
+    activeTab.classList.add('active');
+  }
+  
   if (loginTab) {
     loginTab.addEventListener('click', function(e) {
       e.preventDefault();
+      updateActiveTab(loginTab);
       // Redirect to the login page
       const loginUrl = '{% url "user-login" %}';
       console.log('Redirecting to:', loginUrl);
@@ -31,11 +42,20 @@ document.addEventListener('DOMContentLoaded', function() {
   if (signupTab) {
     signupTab.addEventListener('click', function(e) {
       e.preventDefault();
+      updateActiveTab(signupTab);
       // Redirect to the signup page
       const signupUrl = '{% url "user-signup" %}';
       console.log('Redirecting to:', signupUrl);
       window.location.href = signupUrl;
     });
+  }
+  
+  // Set initial active state based on current page
+  const currentPath = window.location.pathname;
+  if (currentPath.includes('signup')) {
+    updateActiveTab(signupTab);
+  } else {
+    updateActiveTab(loginTab);
   }
 });
 </script>
@@ -119,7 +139,7 @@ gtag('config', 'UA-129877673-1');
       
       <!-- Login/Signup Tabs -->
       <div class="auth-tabs">
-        <a href="{% url 'user-login' %}" class="tab-button active" data-tab="login">LOGIN</a>
+        <a href="{% url 'user-login' %}" class="tab-button" data-tab="login">LOGIN</a>
         <a href="{% url 'user-signup' %}" class="tab-button" data-tab="signup">SIGN UP</a>
       </div>
       

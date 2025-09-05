@@ -34,15 +34,7 @@ export const ErrorWrapper = ({
 
   return (
     <Block name="error-message">
-      {possum !== false && (
-        <Elem
-          tag="img"
-          name="heidi"
-          src={absoluteURL("/static/images/opossum_broken.svg")}
-          height="111"
-          alt="Heidi's down"
-        />
-      )}
+
 
       {title && <Elem name="title">{title}</Elem>}
 

@@ -18,6 +18,24 @@
     }
   }
 
+  /* Navigation arrows styling */
+  &__nav-arrow {
+    background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162)) !important;
+    color: #ffffff !important;
+    border: none !important;
+    transition: all 0.2s ease !important;
+
+    &:hover {
+      background: linear-gradient(135deg, rgb(90, 110, 220), rgb(105, 65, 150)) !important;
+      transform: scale(1.05) !important;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3) !important;
+    }
+
+    &:active {
+      transform: scale(0.95) !important;
+    }
+  }
+
   &__group {
     display: flex;
     align-items: stretch;

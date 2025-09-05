@@ -7,6 +7,18 @@ const SDKButton = ({ eventName, ...props }) => {
   return sdk.hasHandler(eventName) ? (
     <Button
       {...props}
+      style={{
+        background: "rgb(25, 44, 89) !important",
+        color: "#ffffff !important",
+        border: "none !important",
+        borderRadius: "6px",
+        padding: "8px 16px",
+        fontSize: "12px",
+        fontWeight: "600",
+        cursor: "pointer",
+        transition: "all 0.2s ease",
+        ...props.style
+      }}
       onClick={() => {
         sdk.invoke(eventName);
       }}

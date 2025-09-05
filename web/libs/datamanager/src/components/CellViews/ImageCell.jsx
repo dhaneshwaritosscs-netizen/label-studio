@@ -26,8 +26,8 @@ export const ImageCell = (column) => {
       src={imgSrc}
       alt="Data"
       style={{
-        maxHeight: "100%",
-        maxWidth: "100px",
+        maxHeight: "500px",
+        maxWidth: "500px",
         objectFit: "contain",
         borderRadius: 3,
       }}
@@ -41,8 +41,8 @@ export const ImageCell = (column) => {
       variant="120x120"
       fallbackImage={value}
       style={{
-        maxHeight: "100%",
-        maxWidth: "100px",
+        maxHeight: "500px",
+        maxWidth: "500px",
         objectFit: "contain",
         borderRadius: 3,
       }}

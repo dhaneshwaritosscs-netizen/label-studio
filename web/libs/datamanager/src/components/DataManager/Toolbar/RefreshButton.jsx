@@ -22,6 +22,10 @@ export const RefreshButton = injector(({ store, needsDataFetch, projectFetch, si
       }}
       style={{
         ...(style ?? {}),
+        background: "rgb(25, 44, 89) !important",
+        color: "#ffffff !important",
+        border: "none !important",
+        borderRadius: "6px",
         minWidth: 0,
         padding: 0,
         width: 40,

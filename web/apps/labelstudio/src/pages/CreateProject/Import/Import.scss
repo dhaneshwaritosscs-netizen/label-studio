@@ -95,14 +95,6 @@
     &_uploading {
       border: 1px solid var(--color-primary-border-subtle);
       background-color: var(--grape_500);
-      background-repeat: repeat;
-      background-position: 40px;
-      background-size: 37px 100%;
-      animation: status-uploading 1s linear infinite;
-      background-image: repeating-linear-gradient(-63.43deg,
-          rgb(255 255 255 / 20%) 1px, #efefef 2px, #efefef 6px,
-          rgb(255 255 255 / 20%) 7px,
-          rgb(255 255 255 / 20%) 12px);
     }
   }
 
@@ -302,12 +294,3 @@
   z-index: 1;
 }
 
-@keyframes status-uploading {
-  0% {
-    background-position: 0 0;
-  }
-
-  100% {
-    background-position: 37px 0;
-  }
-}

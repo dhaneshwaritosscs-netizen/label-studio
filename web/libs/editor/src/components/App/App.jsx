@@ -2,7 +2,7 @@
  * Libraries
  */
 import React, { Component } from "react";
-import { Result, Spin } from "antd";
+import { Result } from "antd";
 import { getEnv, getRoot } from "mobx-state-tree";
 import { observer, Provider } from "mobx-react";
 
@@ -25,6 +25,7 @@ import "../../tags/visual";
  */
 import { Space } from "../../common/Space/Space";
 import { Button } from "../../common/Button/Button";
+import { IconChevronLeft, IconChevronRight } from "@humansignal/icons";
 import { Block, Elem } from "../../utils/bem";
 import { isSelfServe } from "../../utils/billing";
 import {
@@ -131,9 +132,6 @@ class App extends Component {
     );
   }
 
-  renderLoader() {
-    return <Result icon={<Spin size="large" />} />;
-  }
 
   _renderAll(obj) {
     if (obj.length === 1) return <Segment annotation={obj[0]}>{[Tree.renderItem(obj[0].root)]}</Segment>;
@@ -177,6 +175,94 @@ class App extends Component {
     );
   }
 
+  _renderLeftNavigation() {
+    // Task navigation functions within the same project
+    const navigateToTask = (direction) => {
+      const currentUrl = window.location.href;
+      const urlMatch = currentUrl.match(/\/projects\/(\d+)\/data\?tab=(\d+)&task=(\d+)/);
+      
+      if (urlMatch) {
+        const projectId = urlMatch[1];
+        const tabId = urlMatch[2];
+        const currentTaskId = parseInt(urlMatch[3]);
+        const newTaskId = direction === 'next' ? currentTaskId + 1 : currentTaskId - 1;
+        
+        // Navigate to the new task URL within the same project
+        const newUrl = `/projects/${projectId}/data?tab=${tabId}&task=${newTaskId}`;
+        window.location.href = newUrl;
+      }
+    };
+
+    const navigateToNextTask = () => navigateToTask('next');
+    const navigateToPrevTask = () => navigateToTask('prev');
+
+    return (
+      <Block name="left-navigation">
+        <Button
+          className="nav-arrow nav-arrow--prev"
+          icon={<IconChevronLeft width={20} height={20} />}
+          type="text"
+          aria-label="Previous task"
+          onClick={navigateToPrevTask}
+          size="large"
+          style={{
+            background: "transparent",
+            color: "#000000",
+            border: "none",
+            borderRadius: "50%",
+            width: "40px",
+            height: "40px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: "none",
+            transition: "all 0.2s ease",
+
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.transform = "scale(1.1)";
+            e.target.style.boxShadow = "none";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.transform = "scale(1)";
+            e.target.style.boxShadow = "none";
+          }}
+        />
+        <Button
+          className="nav-arrow nav-arrow--next"
+          icon={<IconChevronRight width={20} height={20} />}
+          type="text"
+          aria-label="Next task"
+          onClick={navigateToNextTask}
+          size="large"
+          style={{
+            background: "transparent",
+            color: "#000000",
+            border: "none",
+            borderRadius: "50%",
+            width: "40px",
+            height: "40px",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            boxShadow: "none",
+            transition: "all 0.2s ease",
+          }}
+          onMouseEnter={(e) => {
+            e.target.style.transform = "scale(1.1)";
+            e.target.style.boxShadow = "none";
+          }}
+          onMouseLeave={(e) => {
+            e.target.style.transform = "scale(1)";
+            e.target.style.boxShadow = "none";
+          }}
+        />
+      </Block>
+    );
+  }
+
+
+
   renderAllAnnotations() {
     const as = this.props.store.annotationStore;
     const entities = [...as.annotations, ...as.predictions];
@@ -218,7 +304,7 @@ class App extends Component {
     const root = as.selected && as.selected.root;
     const { settings } = store;
 
-    if (store.isLoading) return this.renderLoader();
+    // if (store.isLoading) return this.renderLoader();
 
     if (store.noTask) return this.renderNothingToLabel(store);
 
@@ -232,7 +318,7 @@ class App extends Component {
 
     // tags can be styled in config when user is awaiting for suggestions from ML backend
     const mainContent = (
-      <Block name="main-content" mix={store.awaitingSuggestions ? ["requesting"] : []}>
+      <Block name="main-content">
         {as.validation === null
           ? this._renderUI(as.selectedHistory?.root ?? root, as)
           : this.renderConfigValidationException(store)}
@@ -270,6 +356,7 @@ class App extends Component {
             )}
 
             {isDefined(store) && store.hasInterface("topbar") && <TopBar store={store} />}
+            {this._renderLeftNavigation()}
             <Block
               name="wrapper"
               mod={{

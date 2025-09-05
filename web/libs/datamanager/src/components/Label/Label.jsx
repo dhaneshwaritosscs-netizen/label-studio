@@ -101,7 +101,7 @@ export const Labeling = injector(
         )}
 
         <Elem name="content">
-          {isExplorerMode && (
+          {false && (
             <Elem name="table">
               <Elem
                 tag={Resizer}
@@ -120,7 +120,6 @@ export const Labeling = injector(
           )}
 
           <Elem name="lsf-wrapper" mod={{ mode: isExplorerMode ? "explorer" : "labeling" }}>
-            {loading && <Elem name="waiting" mod={{ animated: true }} />}
             <Elem ref={lsfRef} id="label-studio-dm" name="lsf-container" key="label-studio" />
           </Elem>
         </Elem>

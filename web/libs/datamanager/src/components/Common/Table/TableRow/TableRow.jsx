@@ -191,52 +191,10 @@ export const TableRow = observer(({ data, even, style, wrapperStyle, onClick, st
             </div>
           )}
           <div style={{ marginLeft: 'auto', cursor: 'pointer' }}>
-            <span style={{ fontSize: '16px', color: '#9ca3af' }}>⋯</span>
+           {/* <span style={{ fontSize: '16px', color: '#9ca3af' }}>⋯</span> */}
           </div>
         </div>
 
-        {/* Action Buttons */}
-        <div style={{ display: 'flex', gap: '8px', marginTop: 'auto' }}>
-          <button style={{
-            background: 'linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))',
-            color: '#ffffff',
-            border: 'none',
-            borderRadius: '6px',
-            padding: '8px 16px',
-            fontSize: '12px',
-            fontWeight: '600',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease'
-          }}>
-            Import
-          </button>
-          <button style={{
-            background: 'linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))',
-            color: '#ffffff',
-            border: 'none',
-            borderRadius: '6px',
-            padding: '8px 16px',
-            fontSize: '12px',
-            fontWeight: '600',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease'
-          }}>
-            Export
-          </button>
-          <button style={{
-            background: 'linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))',
-            color: '#ffffff',
-            border: 'none',
-            borderRadius: '6px',
-            padding: '8px 16px',
-            fontSize: '12px',
-            fontWeight: '600',
-            cursor: 'pointer',
-            transition: 'all 0.2s ease'
-          }}>
-            Label
-          </button>
-        </div>
       </div>
     </div>
   );

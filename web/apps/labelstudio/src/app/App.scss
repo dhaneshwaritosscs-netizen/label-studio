@@ -1,5 +1,56 @@
 @import '../themes/default/variables';
 
+// Hide HeidiTip and opossum images completely - must be first
+.lsf-heidy-tip,
+.heidy-tip,
+[class*="heidy-tip"],
+[class*="lsf-heidy-tip"],
+img[src*="opossum"],
+img[alt*="opossum"],
+img[alt*="Heidi"],
+[class*="heidi"] {
+  display: none !important;
+  visibility: hidden !important;
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+// CSS animation for spinner
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Global button gradient override - must be first and most important
+html body .button-ls_look_primary {
+  --button-background-color: transparent !important;
+  --button-color: #ffffff !important;
+  background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162)) !important;
+  border: none !important;
+  color: #ffffff !important;
+  font-weight: 600 !important;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3) !important;
+  transition: all 0.3s ease !important;
+
+  &:hover {
+    --button-background-color: transparent !important;
+    background: linear-gradient(135deg, rgb(90, 110, 220), rgb(105, 65, 150)) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4) !important;
+  }
+
+  &:active {
+    --button-background-color: transparent !important;
+    background: linear-gradient(135deg, rgb(90, 110, 220), rgb(105, 65, 150)) !important;
+    transform: translateY(0) !important;
+  }
+
+  &:focus {
+    --button-background-color: transparent !important;
+    background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162)) !important;
+  }
+}
+
 // Global override for all red highlighting - must be first and most important
 * {
   &[class*="htx-highlight"],
