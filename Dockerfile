@@ -49,7 +49,7 @@ FROM frontend-builder AS frontend-version-generator
 RUN --mount=type=cache,target=${YARN_CACHE_FOLDER},sharing=locked \
     --mount=type=cache,target=${NX_CACHE_DIRECTORY},sharing=locked \
     --mount=type=bind,source=.git,target=../.git \
-    yarn version:libs
+    yarn version:libs || echo "Version generation failed, continuing without git info"
 
 ################################ Stage: venv-builder (prepare the virtualenv)
 FROM python:${PYTHON_VERSION}-slim AS venv-builder
@@ -113,7 +113,10 @@ ARG BRANCH_OVERRIDE
 
 # Create version_.py and ls-version_.py
 RUN --mount=type=bind,source=.git,target=./.git \
-    VERSION_OVERRIDE=${VERSION_OVERRIDE} BRANCH_OVERRIDE=${BRANCH_OVERRIDE} poetry run python label_studio/core/version.py
+    VERSION_OVERRIDE=${VERSION_OVERRIDE} BRANCH_OVERRIDE=${BRANCH_OVERRIDE} poetry run python label_studio/core/version.py || \
+    (echo "Git not available, creating default version files" && \
+     echo "info = {'version': '${VERSION_OVERRIDE:-1.0.0}', 'commit': 'unknown', 'date': 'unknown', 'branch': '${BRANCH_OVERRIDE:-main}', 'message': 'unknown'}" > label_studio/core/version_.py && \
+     cp label_studio/core/version_.py label_studio/core/ls-version_.py)
 
 ################################### Stage: prod
 FROM python:${PYTHON_VERSION}-slim AS production
