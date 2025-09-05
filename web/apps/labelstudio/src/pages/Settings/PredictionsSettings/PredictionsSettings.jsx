@@ -82,4 +82,5 @@ export const PredictionsSettings = () => {
 };
 
 PredictionsSettings.title = "Predictions";
+PredictionsSettings.menuItem = "Predictions";
 PredictionsSettings.path = "/predictions";

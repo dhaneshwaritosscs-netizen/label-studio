@@ -102,12 +102,12 @@ export const PeoplePage = () => {
 
           <Space>
             {isFF(FF_AUTH_TOKENS) && <Button onClick={showApiTokenSettingsModal} className="white-text-button" style={{
-              background: "linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162)) !important",
+              background: "rgb(25 44 89) !important",
               color: "white !important",
               border: "none"
             }}>API Tokens Settings</Button>}
             <Button icon={<IconPlus />} primary onClick={() => setInvitationOpen(true)} className="white-text-button" style={{
-              background: "linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162)) !important",
+              background: "rgb(25 44 89) !important",
               color: "white !important",
               border: "none"
             }}>

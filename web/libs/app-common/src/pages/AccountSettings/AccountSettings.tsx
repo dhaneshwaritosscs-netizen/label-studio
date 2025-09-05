@@ -1,5 +1,5 @@
 import { Card, CardHeader, CardTitle, CardContent, CardDescription } from "@humansignal/ui/lib/card-new/card";
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import styles from "./AccountSettings.module.scss";
 import { accountSettingsSections } from "./sections";
@@ -11,50 +11,68 @@ import { settingsAtom } from "./atoms";
  * FIXME: This is legacy imports. We're not supposed to use such statements
  * each one of these eventually has to be migrated to core/ui
  */
-import { SidebarMenu } from "apps/labelstudio/src/components/SidebarMenu/SidebarMenu";
+// @ts-ignore
+import { HorizontalSettingsMenu } from "apps/labelstudio/src/components/HorizontalSettingsMenu/HorizontalSettingsMenu";
 
 const AccountSettingsPage = () => {
   const settings = useAtomValue(settingsAtom);
+  const [activeTab, setActiveTab] = useState("personal-info");
+  
   const contentClassName = clsx(styles.accountSettings__content, {
     [styles.accountSettingsPadding]: window.APP_SETTINGS.billing !== undefined,
   });
+  
   const resolvedSections = useMemo(() => {
-    return settings.data ? accountSettingsSections(settings.data) : [];
-  }, [settings.data]);
+    if (settings.data && !settings.error && 'api_tokens_enabled' in settings.data) {
+      return accountSettingsSections(settings.data);
+    }
+    return [];
+  }, [settings.data, settings.error]);
+
+  // Set initial active tab from URL hash
+  useEffect(() => {
+    const hash = window.location.hash.replace('#', '');
+    if (hash && resolvedSections.some(section => section.id === hash)) {
+      setActiveTab(hash);
+    }
+  }, [resolvedSections]);
 
   const menuItems = useMemo(
     () =>
       resolvedSections.map(({ title, id }) => ({
         title,
         path: () => {
+          setActiveTab(id);
           if (!window?.location) return;
           window.location.hash = `#${id}`;
         },
       })),
-    [accountSettingsSections, settings.data],
+    [resolvedSections],
   );
+
+  const activeSection = resolvedSections.find(section => section.id === activeTab);
 
   return (
     <div className={styles.accountSettings}>
-      <SidebarMenu menuItems={menuItems} path={AccountSettingsPage.path}>
+      <HorizontalSettingsMenu menuItems={menuItems} path={AccountSettingsPage.path} activeTab={activeTab}>
         <div className={contentClassName}>
-          {resolvedSections?.map(({ title, component: Section, description: Description, id }) => (
-            <Card key={id}>
+          {activeSection && (
+            <Card key={activeSection.id}>
               <CardHeader>
-                <CardTitle>{title}</CardTitle>
-                {Description && (
+                <CardTitle>{activeSection.title}</CardTitle>
+                {activeSection.description && (
                   <CardDescription>
-                    <Description />
+                    <activeSection.description />
                   </CardDescription>
                 )}
               </CardHeader>
               <CardContent>
-                <Section />
+                <activeSection.component />
               </CardContent>
             </Card>
-          ))}
+          )}
         </div>
-      </SidebarMenu>
+      </HorizontalSettingsMenu>
     </div>
   );
 };

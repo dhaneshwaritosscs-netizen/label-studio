@@ -73,7 +73,7 @@ export const SelectedUser = ({ user, onClose }) => {
 
       <Elem name="create-project">
         <Button primary style={{
-          background: "linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))"
+          background: "rgb(25 44 89)"
         }}>+ Create Project</Button>
       </Elem>
     </Block>

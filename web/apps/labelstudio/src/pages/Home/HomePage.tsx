@@ -85,10 +85,6 @@ export const HomePage: Page = () => {
         <section className="relative flex flex-col gap-8 items-center w-full text-center">
           {/* Welcome Banner */}
           <div className="w-full bg-white rounded-lg p-8 shadow-sm border border-gray-200 relative">
-            {/* Floating Dots */}
-            <div className="absolute top-4 left-4 w-2 h-2 bg-gray-800 rounded-full"></div>
-            <div className="absolute top-6 right-6 w-1.5 h-1.5 bg-gray-800 rounded-full"></div>
-            <div className="absolute bottom-4 left-8 w-1 h-1 bg-gray-800 rounded-full"></div>
 
             {/* TOAI Studio Badge */}
             {/* <div className="inline-flex items-center gap-4 px-6 py-4 bg-blue-100 rounded-full border border-blue-200 mb-6">
@@ -144,7 +140,7 @@ export const HomePage: Page = () => {
                     : "text-blue-600 bg-white border border-blue-300 hover:bg-gray-50"
                     }`}
                   style={isCreateProject ? {
-                    background: "linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))",
+                    background: "rgb(25 44 89)",
                     width: "200px",
                     minWidth: "200px"
                   } : {
@@ -206,7 +202,7 @@ export const HomePage: Page = () => {
                       size="medium"
                       className="px-8 py-3 text-lg font-medium border-0 shadow-sm hover:shadow-md transition-all duration-200 rounded-lg"
                       style={{
-                        background: "linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))",
+                        background: "rgb(25 44 89)",
                         width: "200px",
                         minWidth: "200px"
                       }}
@@ -450,7 +446,7 @@ function AdvancedProjectCard({
           {/* New Project Label */}
           <span className="inline-block text-white text-xs px-2 py-1 rounded mt-2"
             style={{
-              background: "linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))"
+              background: "rgb(25 44 89)"
             }}>
             New Project
           </span>

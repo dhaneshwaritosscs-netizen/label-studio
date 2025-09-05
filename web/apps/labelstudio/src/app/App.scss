@@ -25,7 +25,7 @@ img[alt*="Heidi"],
 html body .button-ls_look_primary {
   --button-background-color: transparent !important;
   --button-color: #ffffff !important;
-  background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162)) !important;
+  background: rgb(25 44 89) !important;
   border: none !important;
   color: #ffffff !important;
   font-weight: 600 !important;
@@ -47,7 +47,35 @@ html body .button-ls_look_primary {
 
   &:focus {
     --button-background-color: transparent !important;
-    background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162)) !important;
+    background: rgb(25 44 89) !important;
+  }
+}
+
+// Global override to hide only red loaders (persimmon_400 color)
+* {
+  // Override persimmon_400 color to be transparent - this removes red loaders
+  --persimmon_400: transparent !important;
+  --color-persimmon-400: transparent !important;
+  
+  // Hide only elements that use the red persimmon color
+  [style*="#FF7557"],
+  [style*="persimmon"],
+  [style*="255, 117, 87"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+  }
+}
+
+// Additional overrides for red loaders only
+html body {
+  // Hide any elements with red/orange colors that might be red loaders
+  [style*="#FF7557"],
+  [style*="persimmon"],
+  [style*="255, 117, 87"] {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
   }
 }
 

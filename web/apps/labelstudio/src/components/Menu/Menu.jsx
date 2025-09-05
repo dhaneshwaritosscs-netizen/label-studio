@@ -50,25 +50,37 @@ export const Menu = forwardRef(
 Menu.Item = MenuItem;
 Menu.Spacer = () => <Elem block="main-menu" tag="li" name="spacer" />;
 Menu.Divider = () => <Elem block="main-menu" tag="li" name="divider" />;
-Menu.Builder = (url, menuItems) => {
+Menu.Builder = (url, menuItems, activeTab) => {
   return (menuItems ?? []).map((item, index) => {
     if (item === "SPACER") return <Menu.Spacer key={index} />;
     if (item === "DIVIDER") return <Menu.Divider key={index} />;
 
     let pageLabel;
     let pagePath;
+    let itemId;
 
     if (Array.isArray(item)) {
       [pagePath, pageLabel] = item;
+    } else if (item && typeof item === "object" && item.menuItem) {
+      // Handle component objects with menuItem property (like GeneralSettings, AnnotationSettings, etc.)
+      pageLabel = item.menuItem;
+      pagePath = item.path || "/";
+      itemId = item.menuItem.toLowerCase().replace(/\s+/g, "-");
+    } else if (item && typeof item === "object" && item.title) {
+      // Handle component objects with title property (like WebhookPage)
+      pageLabel = item.title;
+      pagePath = item.path || "/";
+      itemId = item.title.toLowerCase().replace(/\s+/g, "-");
     } else {
-      const { menuItem, title, path } = item;
+      const { menuItem, title, path, id } = item || {};
       pageLabel = title ?? menuItem;
       pagePath = path;
+      itemId = id;
     }
 
     if (typeof pagePath === "function") {
       return (
-        <Menu.Item key={index} onClick={pagePath}>
+        <Menu.Item key={index} onClick={pagePath} active={activeTab === itemId}>
           {pageLabel}
         </Menu.Item>
       );
@@ -77,7 +89,7 @@ Menu.Builder = (url, menuItems) => {
     const location = `${url}${pagePath}`.replace(/([/]+)/g, "/");
 
     return (
-      <Menu.Item key={index} to={location} exact>
+      <Menu.Item key={index} to={location} exact active={activeTab === itemId}>
         {pageLabel}
       </Menu.Item>
     );

@@ -113,7 +113,7 @@
     transition: all 0.2s ease;
 
     &_active {
-      background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162));
+      background: rgb(25 44 89);
       color: #ffffff;
       box-shadow: 0 2px 4px rgba(102, 126, 234, 0.2);
     }
@@ -176,7 +176,7 @@
     position: absolute;
     top: 12px;
     right: 12px;
-    background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162));
+    background: rgb(25 44 89);
     color: #ffffff;
     padding: 4px 8px;
     border-radius: 6px;
@@ -201,7 +201,7 @@
 
     .lsf-button {
       width: 100%;
-      background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162));
+      background: rgb(25 44 89);
       border: 1px solid rgb(102, 126, 234);
       color: #ffffff;
       font-weight: 700;

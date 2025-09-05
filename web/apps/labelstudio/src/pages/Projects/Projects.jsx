@@ -159,7 +159,7 @@ export const ProjectsPage = () => {
             look="primary" 
             size="large"
             style={{
-              background: "linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))",
+              background: "rgb(25 44 89)",
               border: "none",
               padding: "16px 32px",
               borderRadius: "12px",
@@ -281,7 +281,7 @@ ProjectsPage.context = ({ openModal, showButton }) => {
       look="primary" 
       size="compact"
       style={{
-        background: "linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162))",
+        background: "rgb(25 44 89)",
         border: "none",
         color: "#ffffff",
         fontWeight: "600",

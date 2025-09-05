@@ -83,4 +83,5 @@ export const AnnotationSettings = () => {
 };
 
 AnnotationSettings.title = "Annotation";
+AnnotationSettings.menuItem = "Annotation";
 AnnotationSettings.path = "/annotation";

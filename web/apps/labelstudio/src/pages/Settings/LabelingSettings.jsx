@@ -90,4 +90,5 @@ export const LabelingSettings = () => {
 };
 
 LabelingSettings.title = "Labeling Interface";
+LabelingSettings.menuItem = "Labeling Interface";
 LabelingSettings.path = "/labeling";

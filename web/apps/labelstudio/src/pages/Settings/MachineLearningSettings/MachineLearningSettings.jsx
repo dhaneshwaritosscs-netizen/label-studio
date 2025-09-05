@@ -184,4 +184,5 @@ export const MachineLearningSettings = () => {
 };
 
 MachineLearningSettings.title = "Model";
+MachineLearningSettings.menuItem = "Model";
 MachineLearningSettings.path = "/ml";

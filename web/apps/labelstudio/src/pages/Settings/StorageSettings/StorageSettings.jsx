@@ -36,4 +36,5 @@ export const StorageSettings = () => {
 };
 
 StorageSettings.title = "Cloud Storage";
+StorageSettings.menuItem = "Cloud Storage";
 StorageSettings.path = "/storage";

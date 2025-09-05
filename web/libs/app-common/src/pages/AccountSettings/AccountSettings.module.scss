@@ -2,16 +2,22 @@
   flex: 1;
   display: flex;
   flex-direction: column;
+  background: #f8fafc;
+  min-height: 100vh;
 
   &__content {
     display: flex;
     flex-direction: column;
-    gap: var(--spacing-wide);
-    max-width: 660px;
+    gap: 1.5rem;
+    max-width: 100%;
+    width: 100%;
 
     h1 {
-      font-size: var(--font-size-header, 28px);
-      margin: 0;
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: #111827;
+      margin: 0 0 1.5rem 0;
+      letter-spacing: -0.025em;
     }
   }
 }
@@ -47,4 +53,89 @@
 
 .saveButton {
   width: 125px;
+}
+
+// Custom Card styling to match second image
+:global(.card) {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+  border: 1px solid #e5e7eb;
+  overflow: hidden;
+}
+
+:global(.card-header) {
+  padding: 1.5rem 1.5rem 0 1.5rem;
+  border-bottom: none;
+}
+
+:global(.card-title) {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: #111827;
+  margin: 0 0 1rem 0;
+  letter-spacing: -0.025em;
+}
+
+:global(.card-content) {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+}
+
+:global(.card-description) {
+  color: #6b7280;
+  font-size: 0.875rem;
+  margin-bottom: 1rem;
+}
+
+// Button styling to match project settings page
+:global(.btn-primary) {
+  @apply inline-flex items-center border box-border transition-all text-center hover:shadow-md transition-all duration-200 py-3 px-6 rounded-lg text-blue-600 bg-white border-blue-300 hover:bg-gray-50;
+  
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: 140px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 2px;
+  
+  &:hover {
+    transform: translateY(-1px);
+  }
+}
+
+:global(.btn-secondary) {
+  @apply inline-flex items-center border box-border transition-all text-center hover:shadow-md transition-all duration-200 py-3 px-6 rounded-lg text-blue-600 bg-white border-blue-300 hover:bg-gray-50;
+  
+  font-weight: 500;
+  font-size: 14px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  white-space: nowrap;
+  min-width: 140px;
+  position: relative;
+  overflow: hidden;
+  margin: 0 2px;
+  
+  &:hover {
+    transform: translateY(-1px);
+  }
+}
+
+// Active state styling to match project settings
+:global(.main-menu__item_active) {
+  @apply text-white bg-blue-600 border-blue-600 hover:bg-blue-700 hover:border-blue-700;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(59, 130, 246, 0.3);
+  transform: translateY(-1px);
 }

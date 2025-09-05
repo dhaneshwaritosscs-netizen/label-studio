@@ -51,11 +51,11 @@
 }
 
 .htx-highlight {
-  // border: 1px dashed #00aeff;
+  border: 1px dashed #00aeff;
 }
 
 .htx-highlight-last {
-  // position: relative;
+  position: relative;
 }
 
 .htx-highlight-last::after {
@@ -364,14 +364,14 @@ label, .ant-form-item-label {
 /* ONLY Red Highlighted Elements - Direct Style Injection */
 /* Force gradient on specific tab elements */
 .ant-tabs-tab {
-  background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162)) !important;
+  background: rgb(25 44 89) !important;
   background-color: transparent !important;
   color: #ffffff !important;
   border: none !important;
 }
 
 .ant-tabs-tab-active {
-  background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162)) !important;
+  background: rgb(25 44 89) !important;
   background-color: transparent !important;
   color: #ffffff !important;
 }
@@ -388,14 +388,14 @@ label, .ant-form-item-label {
 
 /* Panel tabs */
 .panel-tabs__tab {
-  background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162)) !important;
+  background: rgb(25 44 89) !important;
   background-color: transparent !important;
   color: #ffffff !important;
   border: none !important;
 }
 
 .panel-tabs__tab_active {
-  background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162)) !important;
+  background: rgb(25 44 89) !important;
   background-color: transparent !important;
   color: #ffffff !important;
 }
@@ -601,4 +601,227 @@ label, .ant-form-item-label {
   background: linear-gradient(135deg, rgb(90, 110, 220), rgb(105, 65, 150)) !important;
   background-color: transparent !important;
   transform: translateY(0) !important;
+}
+
+/* LSF Panel tabs styling - target the specific Relations tab */
+.lsf-panel-tabs__tab {
+  background: rgb(25 44 89) !important;
+  background-color: rgb(25 44 89) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  transition: all 0.3s ease !important;
+}
+
+.lsf-panel-tabs__tab_active {
+  background: rgb(25 44 89) !important;
+  background-color: rgb(25 44 89) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Target the specific ID pattern from the user's HTML */
+#regions-relations_1_droppable,
+[id*="regions-relations"] {
+  background: rgb(25 44 89) !important;
+  background-color: rgb(25 44 89) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  transition: all 0.3s ease !important;
+}
+
+/* More specific targeting to override any conflicting styles */
+div.lsf-panel-tabs__tab,
+div[class*="lsf-panel-tabs__tab"] {
+  background: rgb(25 44 89) !important;
+  background-color: rgb(25 44 89) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Ultra-specific targeting for any remaining conflicts */
+html body .lsf-panel-tabs__tab,
+html body .lsf-panel-tabs__tab_active,
+html body div.lsf-panel-tabs__tab,
+html body div[class*="lsf-panel-tabs__tab"] {
+  background: rgb(25 44 89) !important;
+  background-color: rgb(25 44 89) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Target any potential inactive or default state */
+.lsf-panel-tabs__tab:not(.lsf-panel-tabs__tab_active),
+.lsf-panel-tabs__tab[class*="inactive"],
+.lsf-panel-tabs__tab[class*="default"] {
+  background: rgb(25 44 89) !important;
+  background-color: rgb(25 44 89) !important;
+  color: #ffffff !important;
+  border: none !important;
+  font-weight: 600 !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  transition: all 0.3s ease !important;
+}
+
+.lsf-panel-tabs__tab:hover {
+  background: rgb(20 35 70) !important;
+  background-color: rgb(20 35 70) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(25, 44, 89, 0.3) !important;
+}
+
+.lsf-panel-tabs__tab_active:hover {
+  background: rgb(20 35 70) !important;
+  background-color: rgb(20 35 70) !important;
+  color: #ffffff !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 4px 12px rgba(25, 44, 89, 0.3) !important;
+}
+
+/* Target the specific droppable space element */
+#regions-relations_2-droppable-space {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  margin: 4px 0 !important;
+  min-height: 40px !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Target any element with lsf-tabs_drop-space-after class */
+.lsf-tabs_drop-space-after {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  margin: 4px 0 !important;
+  min-height: 40px !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Target any element with regions-relations in ID and drop-space in class */
+[id*="regions-relations"][class*="drop-space"] {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  margin: 4px 0 !important;
+  min-height: 40px !important;
+  transition: all 0.3s ease !important;
+}
+
+/* More specific targeting for any drop space elements */
+[class*="lsf-tabs"][class*="drop-space"] {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  margin: 4px 0 !important;
+  min-height: 40px !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Ultra-specific targeting for any remaining conflicts */
+html body #regions-relations_2-droppable-space,
+html body .lsf-tabs_drop-space-after,
+html body [id*="regions-relations"][class*="drop-space"] {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  margin: 4px 0 !important;
+  min-height: 40px !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Target the specific regions-relations element with lsf-tabs-panel_header class */
+#regions-relations {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  margin: 4px 0 !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Target any element with lsf-tabs-panel_header class */
+.lsf-tabs-panel_header {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  margin: 4px 0 !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Target the specific combination */
+#regions-relations.lsf-tabs-panel_header {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  margin: 4px 0 !important;
+  transition: all 0.3s ease !important;
+}
+
+/* More specific targeting for any tabs panel header elements */
+[class*="lsf-tabs-panel"][class*="header"] {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  margin: 4px 0 !important;
+  transition: all 0.3s ease !important;
+}
+
+/* Ultra-specific targeting for regions-relations element */
+html body #regions-relations,
+html body .lsf-tabs-panel_header,
+html body #regions-relations.lsf-tabs-panel_header {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+  color: #000000 !important;
+  border: 1px solid #e5e7eb !important;
+  border-radius: 8px !important;
+  padding: 8px 16px !important;
+  margin: 4px 0 !important;
+  transition: all 0.3s ease !important;
 }

@@ -92,7 +92,7 @@
   }
 
   &_selected {
-    background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162));
+    background: rgb(25 44 89);
     border-color: var(--color-neutral-border);
     transform: translate(0, 1px);
     margin-top: 1px;
@@ -101,7 +101,7 @@
 
     &:hover {
       cursor: default;
-      background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162));
+      background: rgb(25 44 89);
       border-color: var(--color-neutral-border);
     }
 

@@ -13,7 +13,7 @@
 html body .button-ls_look_primary {
   --button-background-color: transparent !important;
   --button-color: #ffffff !important;
-  background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162)) !important;
+  background: rgb(25 44 89) !important;
   border: none !important;
   color: #ffffff !important;
   font-weight: 600 !important;
@@ -35,7 +35,7 @@ html body .button-ls_look_primary {
 
   &:focus {
     --button-background-color: transparent !important;
-    background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162)) !important;
+    background: rgb(25 44 89) !important;
   }
 }
 
@@ -185,7 +185,7 @@ html body .button-ls_look_primary {
   .button-ls_look_primary {
     --button-background-color: transparent !important;
     --button-color: #ffffff !important;
-    background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162)) !important;
+    background: rgb(25 44 89) !important;
     border: none !important;
     color: #ffffff !important;
     font-weight: 600 !important;
@@ -207,7 +207,7 @@ html body .button-ls_look_primary {
 
     &:focus {
       --button-background-color: transparent !important;
-      background: linear-gradient(135deg, rgb(102, 126, 234), rgb(118, 75, 162)) !important;
+      background: rgb(25 44 89) !important;
     }
   }
 }

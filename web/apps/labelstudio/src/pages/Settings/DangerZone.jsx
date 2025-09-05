@@ -133,4 +133,5 @@ export const DangerZone = () => {
 };
 
 DangerZone.title = "Danger Zone";
+DangerZone.menuItem = "Danger Zone";
 DangerZone.path = "/danger-zone";
